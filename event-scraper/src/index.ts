@@ -1,6 +1,3 @@
-import { configDotenv } from "dotenv";
-configDotenv();
+import Server from "./server";
 
-const main = async () => {};
-
-main();
+Server.start();
