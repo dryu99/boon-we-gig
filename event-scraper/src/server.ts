@@ -6,7 +6,7 @@ export default class Server {
   public static async start() {
     logger.info("Starting scraper server");
 
-    const posts = await InstagramService.fetchPostsByAccountId("seendosi");
+    const posts = await InstagramService.fetchPostsByAccountId("clubbbang");
     console.log(posts);
   }
 }

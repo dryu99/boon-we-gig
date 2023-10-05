@@ -14,4 +14,5 @@ export default class Config {
     .INSTAGRAM_USER_AGENT as string;
   public static readonly INSTAGRAM_X_IG_APP_ID = process.env
     .INSTAGRAM_X_IG_APP_ID as string;
+  public static readonly OPENAI_API_KEY = process.env.OPENAI_API_KEY as string;
 }
