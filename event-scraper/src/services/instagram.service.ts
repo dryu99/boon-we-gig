@@ -10,7 +10,9 @@ export type InstagramPost = {
 };
 
 export default class InstagramService {
-  public async fetchPostsByUserId(userId: string): Promise<InstagramPost[]> {
+  public async fetchPostsByAccountId(
+    accountId: string
+  ): Promise<InstagramPost[]> {
     return iwa({
       base64images: false, // <!-- optional, but without you will be not able to save images.. it increases the size of the json file
       base64imagesCarousel: false, // <!-- optional but not recommended, it increases the size of the json file
@@ -27,7 +29,7 @@ export default class InstagramService {
       pretty: true,
       time: 0, // this option is kinda dumb, it won't let me make parallel requests since if i make a request within the timeframe, it'll just pull whatevers in the cache
 
-      id: userId,
+      id: accountId,
     });
   }
 }
