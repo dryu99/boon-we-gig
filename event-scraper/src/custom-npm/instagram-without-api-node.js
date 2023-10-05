@@ -2,6 +2,9 @@ const request = require("request");
 const imageToBase64 = require("image-to-base64");
 const fs = require("fs");
 
+// TODO make this file ts
+// TODO remove request and image-to-base64 libs
+
 function iwaIdUrl({
   id,
   file,
