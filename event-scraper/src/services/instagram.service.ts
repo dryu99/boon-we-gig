@@ -1,5 +1,6 @@
 import { iwa } from "../custom-npm/instagram-without-api-node.js";
 import Config from "../utils/config";
+import { logger } from "../utils/logger.js";
 
 export type InstagramPost = {
   id: string;
@@ -13,6 +14,7 @@ export default class InstagramService {
   public static async fetchPostsByAccountId(
     accountId: string
   ): Promise<InstagramPost[]> {
+    logger.info("Scraping instagram posts", { accountId });
     return iwa({
       base64images: false, // <!-- optional, but without you will be not able to save images.. it increases the size of the json file
       base64imagesCarousel: false, // <!-- optional but not recommended, it increases the size of the json file

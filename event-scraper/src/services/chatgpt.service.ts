@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import Config from "../utils/config";
 import { ChatCompletionMessageParam } from "openai/resources/chat";
 import { chatGptLogger, logger } from "../utils/logger";
+import { InstagramPost } from "./instagram.service";
 
 type ResponseContent = {
   eventData: ParsedEventData | null;
@@ -50,13 +51,13 @@ export default class ChatGptService {
     apiKey: Config.OPENAI_API_KEY,
   });
 
+  // TODO theres definitely a way to optimize this so i don't have to send same system message on every request. we can reuse it somehow
   public static async extractInstagramPostEventData(
-    postText: string,
-    postLink: string
+    post: InstagramPost
   ): Promise<ParsedEventData | null> {
     const res = await this.openAi.chat.completions.create({
       model: "gpt-4",
-      messages: [systemMessage, { role: "user", content: postText }],
+      messages: [systemMessage, { role: "user", content: post.text }],
       temperature: 0.5,
       max_tokens: 512,
       top_p: 1,
@@ -64,22 +65,25 @@ export default class ChatGptService {
       presence_penalty: 0,
     });
 
-    chatGptLogger.info(`Usage: ${res.id}`, { usage: res.usage });
+    chatGptLogger.info(`Usage: ${res.id}`, {
+      postLink: post.link,
+      usage: res.usage,
+    });
 
     if (res.choices.length === 0) {
-      throw new Error("ChatGPT API returned 0 choices: " + postLink);
+      throw new Error("ChatGPT API returned 0 choices: " + post.link);
     }
 
     if (res.choices.length > 1)
       logger.warning("ChatGPT API returned multiple choices", {
         choices: res.choices,
-        postLink,
+        postLink: post.link,
       });
 
     const resContentStr = res.choices[0].message.content;
     if (resContentStr === null) {
       throw new Error(
-        "ChatGPT API returned message content is missing: " + postLink
+        "ChatGPT API returned message content is missing: " + post.link
       );
     }
 
