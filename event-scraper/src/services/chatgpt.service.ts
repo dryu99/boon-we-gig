@@ -8,23 +8,20 @@ type ResponseContent = {
   eventData: ParsedEventData | null;
 };
 
+// TODO maybe just set as undefined here (if chatgpt doesnt return null fields)
 type ParsedEventData = {
   openDateTime: string | null; // ISO format
   startDateTime: string | null; // ISO format
   earlyBirdPrice: number | null;
   doorPrice: number | null;
   eventType?: "concert" | "dj" | null;
-  artists: {
-    name: string | null;
-    genre: string | null;
-  }[];
+  artists: string[] | null;
 };
 
 const systemMessage: ChatCompletionMessageParam = {
   role: "system",
   content: `Provide JSON data from Instagram posts promoting underground music events. Extract:
 
-\`\`\`typescript
 {
   eventData?: {
     openDateTime?: string; // ISO format
@@ -32,13 +29,9 @@ const systemMessage: ChatCompletionMessageParam = {
     earlyBirdPrice?: number; 
     doorPrice?: number;
     eventType?: "concert" | "dj" | null;
-    artists: {
-      name?: string; // preserve original language
-      genre?: string;
-    }[];
+    artists: string[]; // preserve original language
   }
 }
-\`\`\`
 
 Strict guidelines when extracting data:
 - Don't prettify the JSON
