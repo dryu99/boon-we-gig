@@ -3,40 +3,31 @@ import Config from "../utils/config";
 import { ChatCompletionMessageParam } from "openai/resources/chat";
 import { chatGptLogger, logger } from "../utils/logger";
 import { InstagramPost } from "./instagram.service";
+import { ParsedEvent } from "../models/event";
 
 type ResponseContent = {
-  eventData: ParsedEventData | null;
+  event: ParsedEvent | null;
 };
 
-// TODO maybe just set as undefined here (if chatgpt doesnt return null fields)
-type ParsedEventData = {
-  openDateTime: string | null; // ISO format
-  startDateTime: string | null; // ISO format
-  earlyBirdPrice: number | null;
-  doorPrice: number | null;
-  eventType?: "concert" | "dj" | null;
-  artists: string[] | null;
-};
-
+// remember to change ParseEvent type when changing prompt
 const systemMessage: ChatCompletionMessageParam = {
   role: "system",
-  content: `Provide JSON data from Instagram posts promoting underground music events. Extract:
+  content: `Extract Instagram post data for underground music events into JSON:
 
 {
-  eventData?: {
-    openDateTime?: string; // ISO format
-    startDateTime?: string; // ISO format
-    earlyBirdPrice?: number; 
-    doorPrice?: number;
-    eventType?: "concert" | "dj" | null;
-    artists: string[]; // preserve original language
+  event?: {
+    openDateTime?: string; // ISO
+    startDateTime?: string; // ISO
+    earlyPrice?: number;
+    doorPrice?: number; // -1 if donation
+    type?: "concert" | "dj";
+    artists?: string[];
   }
 }
 
 Strict guidelines when extracting data:
 - Don't prettify the JSON
-- If you detect that the post is promoting multiple events set eventData to null
-- If you detect that the post isn't promoting anything set eventData to null`,
+- Multiple events or no promotions in a post: set event to null`,
 };
 
 export default class ChatGptService {
@@ -47,7 +38,7 @@ export default class ChatGptService {
   // TODO theres definitely a way to optimize this so i don't have to send same system message on every request. we can reuse it somehow
   public static async extractInstagramPostEventData(
     post: InstagramPost
-  ): Promise<ParsedEventData | null> {
+  ): Promise<ParsedEvent | null> {
     const res = await this.openAi.chat.completions.create({
       model: "gpt-4",
       messages: [systemMessage, { role: "user", content: post.text }],
@@ -81,6 +72,6 @@ export default class ChatGptService {
     }
 
     const resContent: ResponseContent = JSON.parse(resContentStr);
-    return resContent.eventData;
+    return resContent.event;
   }
 }
