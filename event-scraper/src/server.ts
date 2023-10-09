@@ -3,10 +3,11 @@ import InstagramAccountData from "./static/instagram-account-data.json";
 import { InstagramService } from "./services/instagram.service";
 import { ChatGptService } from "./services/chatgpt.service";
 import { NewMusicEvent, toNewMusicEvent } from "./db/models/event";
+import { DatabaseClient } from "./db/client";
 
 export class Server {
   public static async start() {
-    logger.info("Starting scraper server");
+    logger.info("Starting scraper");
 
     const posts = await InstagramService.fetchPostsByAccountId(
       "strangefruit.seoul"
