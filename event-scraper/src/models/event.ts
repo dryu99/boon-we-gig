@@ -1,28 +1,34 @@
 import { InstagramPost } from "../services/instagram.service";
+import { UUID } from "../utils/types";
 
-// undefined implies data couldn't be found
-export type ParsedEvent = {
+// the music event parsed
+export type ParsedMusicEvent = {
   openDateTime?: string; // ISO format
   startDateTime?: string; // ISO format
   earlyPrice?: number;
   doorPrice?: number; // -1 if donation
-  type?: "concert" | "dj";
+  eventType?: "concert" | "dj";
   artists?: string[];
 };
 
-export type MusicEvent = {
+// the music event to be inserted into the db
+export type NewMusicEvent = {
+  venueId: UUID;
+  link: string;
+  country: string;
+  reviewStatus: ReviewStatus;
+  city: string;
   openDateTime?: string;
   startDateTime?: string;
   earlyPrice?: number;
   doorPrice?: number;
-  type?: "concert" | "dj";
-  artists?: string[];
-  venue: string;
-  // address: string;
-  link: string;
-  country: string;
-  reviewStatus: ReviewStatus;
+  eventType?: "concert" | "dj";
 };
+
+// export type MusicEvent = NewMusicEvent & {
+//   id: UUID;
+//   artists: UUID[];
+// };
 
 enum ReviewStatus {
   VALID = "VALID",
@@ -30,14 +36,14 @@ enum ReviewStatus {
   NEEDS_REVIEW = "NEEDS_REVIEW",
 }
 
-export const toMusicEvent = (
-  parsedEvent: ParsedEvent,
+export const toNewMusicEvent = (
+  parsedEvent: ParsedMusicEvent,
   post: InstagramPost
-): MusicEvent => {
+): NewMusicEvent => {
   const needsReview =
     parsedEvent.startDateTime === undefined ||
     parsedEvent.doorPrice === undefined ||
-    parsedEvent.type === undefined ||
+    parsedEvent.eventType === undefined ||
     parsedEvent.artists === undefined;
 
   return {
@@ -45,11 +51,11 @@ export const toMusicEvent = (
     startDateTime: parsedEvent.startDateTime,
     earlyPrice: parsedEvent.earlyPrice,
     doorPrice: parsedEvent.doorPrice,
-    type: parsedEvent.type,
-    artists: parsedEvent.artists,
-    venue: post.accountId,
+    eventType: parsedEvent.eventType,
+    venueId: post.accountId,
     link: post.link,
-    country: "KR", // TODO make dynamic,
+    country: "KR", // TODO make dynamic
+    city: "Seoul", // TODO make dynamic
     reviewStatus: needsReview ? ReviewStatus.NEEDS_REVIEW : ReviewStatus.VALID,
   };
 };

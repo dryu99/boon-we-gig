@@ -3,10 +3,10 @@ import Config from "../utils/config";
 import { ChatCompletionMessageParam } from "openai/resources/chat";
 import { chatGptLogger, logger } from "../utils/logger";
 import { InstagramPost } from "./instagram.service";
-import { ParsedEvent } from "../models/event";
+import { ParsedMusicEvent } from "../models/event";
 
 type ResponseContent = {
-  event: ParsedEvent | null;
+  event: ParsedMusicEvent | null;
 };
 
 // remember to change ParseEvent type when changing prompt
@@ -20,7 +20,7 @@ const systemMessage: ChatCompletionMessageParam = {
     startDateTime?: string; // ISO
     earlyPrice?: number;
     doorPrice?: number; // -1 if donation
-    type?: "concert" | "dj";
+    eventType?: "concert" | "dj";
     artists?: string[];
   }
 }
@@ -38,7 +38,7 @@ export default class ChatGptService {
   // TODO theres definitely a way to optimize this so i don't have to send same system message on every request. we can reuse it somehow
   public static async extractInstagramPostEventData(
     post: InstagramPost
-  ): Promise<ParsedEvent | null> {
+  ): Promise<ParsedMusicEvent | null> {
     const res = await this.openAi.chat.completions.create({
       model: "gpt-4",
       messages: [systemMessage, { role: "user", content: post.text }],
