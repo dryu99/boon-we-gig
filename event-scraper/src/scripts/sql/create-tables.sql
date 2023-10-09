@@ -3,6 +3,8 @@ CREATE TABLE venue (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     instagram_id TEXT NOT NULL UNIQUE,
     review_status TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     name TEXT,
     address TEXT
 );
@@ -12,6 +14,8 @@ CREATE TABLE music_artist (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name TEXT NOT NULL,
     review_status TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     genre TEXT,
     instagram_id TEXT UNIQUE,
     youtube_id TEXT,
@@ -26,6 +30,8 @@ CREATE TABLE music_event (
     city TEXT NOT NULL,
     review_status TEXT NOT NULL,
     venue_id UUID REFERENCES venue(id) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     open_date_time TIMESTAMPTZ,
     start_date_time TIMESTAMPTZ,
     early_price DECIMAL(10,2),
