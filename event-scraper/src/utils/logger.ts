@@ -1,6 +1,6 @@
 import winston from "winston";
 import path from "path";
-import Config from "./config";
+import { Config } from "./config";
 
 const winstonConsoleFormat = winston.format.combine(
   winston.format.colorize(),

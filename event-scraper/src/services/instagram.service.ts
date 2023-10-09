@@ -1,5 +1,5 @@
 import { iwa } from "../custom-npm/instagram-without-api-node.js";
-import Config from "../utils/config";
+import { Config } from "../utils/config";
 import { logger } from "../utils/logger.js";
 
 export type InstagramPost = {
@@ -11,7 +11,7 @@ export type InstagramPost = {
   location: string;
 };
 
-export default class InstagramService {
+export class InstagramService {
   public static async fetchPostsByAccountId(
     accountId: string
   ): Promise<InstagramPost[]> {

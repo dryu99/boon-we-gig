@@ -1,9 +1,9 @@
 import OpenAI from "openai";
-import Config from "../utils/config";
+import { Config } from "../utils/config";
 import { ChatCompletionMessageParam } from "openai/resources/chat";
 import { chatGptLogger, logger } from "../utils/logger";
 import { InstagramPost } from "./instagram.service";
-import { ParsedMusicEvent } from "../models/event";
+import { ParsedMusicEvent } from "../db/models/event";
 
 type ResponseContent = {
   event: ParsedMusicEvent | null;
@@ -30,7 +30,7 @@ Strict guidelines when extracting data:
 - Multiple events or no promotions in a post: set event to null`,
 };
 
-export default class ChatGptService {
+export class ChatGptService {
   private static readonly openAi = new OpenAI({
     apiKey: Config.OPENAI_API_KEY,
   });

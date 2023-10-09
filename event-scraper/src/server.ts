@@ -1,9 +1,10 @@
 import { logger } from "./utils/logger";
 import InstagramAccountData from "./static/instagram-account-data.json";
-import InstagramService from "./services/instagram.service";
-import ChatGptService from "./services/chatgpt.service";
-import { NewMusicEvent, toNewMusicEvent } from "./models/event";
-export default class Server {
+import { InstagramService } from "./services/instagram.service";
+import { ChatGptService } from "./services/chatgpt.service";
+import { NewMusicEvent, toNewMusicEvent } from "./db/models/event";
+
+export class Server {
   public static async start() {
     logger.info("Starting scraper server");
 

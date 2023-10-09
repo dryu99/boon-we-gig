@@ -6,7 +6,7 @@ dotenv.config();
 //   path: path.resolve(__dirname, `../../.env.${process.env.NODE_ENV}`),
 // });
 
-export default class Config {
+export class Config {
   public static readonly NODE_ENV = process.env.NODE_ENV as string;
   public static readonly INSTAGRAM_COOKIE = process.env
     .INSTAGRAM_COOKIE as string;
