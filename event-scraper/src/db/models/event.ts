@@ -1,5 +1,5 @@
-import { InstagramPost } from "../services/instagram.service";
-import { UUID } from "../utils/types";
+import { InstagramPost } from "../../services/instagram.service";
+import { UUID } from "../../utils/types";
 
 // the music event parsed
 export type ParsedMusicEvent = {

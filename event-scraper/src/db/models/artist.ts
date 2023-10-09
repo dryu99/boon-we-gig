@@ -1,4 +1,4 @@
-import { ReviewStatus } from "../utils/types";
+import { ReviewStatus } from "../../utils/types";
 
 type MusicArtist = {
   name: string;
