@@ -16,8 +16,8 @@ export type NewMusicEvent = {
   venueId: UUID;
   link: string;
   country: string;
-  reviewStatus: ReviewStatus;
   city: string;
+  reviewStatus: ReviewStatus;
   openDateTime?: string;
   startDateTime?: string;
   earlyPrice?: number;
