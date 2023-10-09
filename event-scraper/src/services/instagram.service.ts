@@ -4,6 +4,7 @@ import { logger } from "../utils/logger.js";
 
 export type InstagramPost = {
   id: string;
+  accountId: string;
   time: number;
   link: string;
   text: string;
@@ -15,7 +16,8 @@ export default class InstagramService {
     accountId: string
   ): Promise<InstagramPost[]> {
     logger.info("Scraping instagram posts", { accountId });
-    return iwa({
+
+    const fetchedPost = iwa({
       base64images: false, // <!-- optional, but without you will be not able to save images.. it increases the size of the json file
       base64imagesCarousel: false, // <!-- optional but not recommended, it increases the size of the json file
       base64videos: false, // <!-- optional but not recommended, it increases the size of the json file
@@ -33,5 +35,12 @@ export default class InstagramService {
 
       id: accountId,
     });
+
+    const resultPost = {
+      ...fetchedPost,
+      accountId,
+    };
+
+    return resultPost;
   }
 }
