@@ -1,9 +1,9 @@
-import "./ui/global.css";
+import "../ui/global.css";
 import type { Metadata } from "next";
-import { courier } from "./ui/fonts";
+import { courier } from "../ui/fonts";
 import Script from "next/script";
-import { Header } from "./ui/components/header";
-import { Footer } from "./ui/components/footer";
+import { Header } from "../ui/components/header";
+import { Footer } from "../ui/components/footer";
 
 // TODO make this dynamic
 export const metadata: Metadata = {
