@@ -1,5 +1,5 @@
-import { ClientMusicEvent, ClientArtist } from "../lib/database/db-manager";
-import { DateHelper } from "../lib/date.helper";
+import { ClientMusicEvent, ClientArtist } from "../../lib/database/db-manager";
+import { DateHelper } from "../../lib/date.helper";
 import Image from "next/image";
 
 export const MusicEvent = ({

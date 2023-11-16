@@ -1,4 +1,4 @@
-import { MusicEventGroup } from "./ui/music-event-group";
+import { MusicEventGroup } from "./ui/components/music-event-group";
 import {
   ClientArtist,
   ClientMusicEvent,

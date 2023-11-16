@@ -1,5 +1,5 @@
-import { ClientMusicEvent } from "../lib/database/db-manager";
-import { DateHelper } from "../lib/date.helper";
+import { ClientMusicEvent } from "../../lib/database/db-manager";
+import { DateHelper } from "../../lib/date.helper";
 import { MusicEvent } from "./music-event";
 
 export const MusicEventGroup = ({
