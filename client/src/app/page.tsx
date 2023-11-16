@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <MusicEvents musicEventGroups={musicEventGroups} />
+      <MusicEvents initialMusicEventGroups={musicEventGroups} />
     </div>
   );
 }

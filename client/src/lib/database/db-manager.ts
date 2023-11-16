@@ -40,7 +40,10 @@ export class DatabaseManager {
     plugins: [new CamelCasePlugin()],
   });
 
-  public static async getAllUpcomingMusicEvents(): Promise<ClientMusicEvent[]> {
+  public static async getAllUpcomingMusicEvents(options: {
+    offset: number;
+    limit: number;
+  }): Promise<ClientMusicEvent[]> {
     return (
       this.db
         .selectFrom("musicEvent")
@@ -90,6 +93,8 @@ export class DatabaseManager {
         // note: should be no timezone issues given utc dates are being compared
         .where("musicEvent.startDateTime", ">", new Date())
         .where("venue.city", "=", "Seoul") // TODO make this dynamic later
+        .limit(options.limit) // TODO consider keyset pagination later for performance
+        .offset(options.offset)
         .orderBy("musicEvent.startDateTime", "asc")
         .execute()
     );
