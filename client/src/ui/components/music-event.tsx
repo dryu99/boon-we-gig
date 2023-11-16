@@ -58,6 +58,7 @@ const MusicEventVenue = ({ musicEvent }: { musicEvent: ClientMusicEvent }) => {
     </div>
   );
 };
+
 const MusicEventArtists = ({
   musicEvent,
 }: {
@@ -75,7 +76,7 @@ const MusicEventArtists = ({
       {musicEvent.artists.map((artist: ClientArtist, i: number) => (
         <>
           <a
-            key={i}
+            key={artist.id}
             href={`https://music.youtube.com/search?q=${artist.name}`}
             className="hover:underline"
           >

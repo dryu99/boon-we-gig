@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   title: "BoonWeGig - Discover Local Concerts, Artists, and Venues in Seoul",
   description:
     "Your source for local concerts, artists, and venues in Seoul, South Korea.",
-  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({

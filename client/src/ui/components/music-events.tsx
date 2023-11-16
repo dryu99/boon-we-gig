@@ -3,20 +3,13 @@
 import { ClientMusicEvent } from "@/lib/database/db-manager";
 import { DateHelper } from "@/lib/date.helper";
 import { MusicEvent } from "./music-event";
+import { MusicEventGroups } from "@/lib/actions";
 
 export const MusicEvents = ({
-  musicEvents,
+  musicEventGroups,
 }: {
-  musicEvents: ClientMusicEvent[];
+  musicEventGroups: MusicEventGroups;
 }) => {
-  const musicEventGroups = musicEvents.reduce((acc, musicEvent) => {
-    const key = `${musicEvent.startDateTime.getUTCMonth()}/${musicEvent.startDateTime.getUTCDate()}/${musicEvent.startDateTime.getUTCFullYear()}`;
-
-    acc[key] ||= [];
-    acc[key].push(musicEvent);
-    return acc;
-  }, {} as Record<string, ClientMusicEvent[]>);
-
   return (
     <div>
       {Object.entries(musicEventGroups).map(([date, musicEvents]) => (
