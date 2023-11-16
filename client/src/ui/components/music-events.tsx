@@ -3,23 +3,36 @@
 import { ClientMusicEvent } from "@/lib/database/db-manager";
 import { DateHelper } from "@/lib/date.helper";
 import { MusicEvent } from "./music-event";
-import { MusicEventGroups, fetchMusicEventGroups } from "@/lib/actions";
-import { useState } from "react";
+import { fetchMusicEvents } from "@/lib/actions";
+import { useMemo, useState } from "react";
 import { EVENTS_PER_LOAD } from "@/lib/constants";
 
+export type MusicEventGroups = Record<string, ClientMusicEvent[]>;
+
 export const MusicEvents = ({
-  initialMusicEventGroups,
+  initialMusicEvents,
 }: {
-  initialMusicEventGroups: MusicEventGroups;
+  initialMusicEvents: ClientMusicEvent[];
 }) => {
   const [dbOffset, setDbOffset] = useState(0);
-  const [musicEventGroups, setMusicEventGroups] = useState(
-    initialMusicEventGroups
-  );
+  const [musicEvents, setMusicEvents] =
+    useState<ClientMusicEvent[]>(initialMusicEvents);
+
+  // TODO we can optimize this by having the server calculate this on initial page load.
+  //      currently its always being calculated on the client.
+  const musicEventGroups = useMemo(() => {
+    return musicEvents.reduce((acc, musicEvent) => {
+      const key = `${musicEvent.startDateTime.getUTCMonth()}/${musicEvent.startDateTime.getUTCDate()}/${musicEvent.startDateTime.getUTCFullYear()}`;
+
+      acc[key] ||= [];
+      acc[key].push(musicEvent);
+      return acc;
+    }, {} as MusicEventGroups);
+  }, [musicEvents]);
 
   const loadMore = async () => {
     const newDbOffset = dbOffset + EVENTS_PER_LOAD;
-    const newMusicEventGroups = await fetchMusicEventGroups({
+    const newMusicEvents = await fetchMusicEvents({
       offset: newDbOffset,
     }); // TODO add error handling
 
@@ -27,16 +40,14 @@ export const MusicEvents = ({
     // TODO hide button when all events are queried
 
     setDbOffset(newDbOffset);
-    setMusicEventGroups({
-      ...musicEventGroups,
-      ...newMusicEventGroups, // TODO fix bug here where keys can get overriden
-    });
+    setMusicEvents([...musicEvents, ...newMusicEvents]);
   };
 
   return (
-    musicEventGroups && (
+    musicEvents && (
       <div>
         <div className="mb-10">
+          {/* // TODO consider just using Object.keys here for perf */}
           {Object.entries(musicEventGroups).map(([date, musicEvents]) => (
             <MusicEventGroup
               key={date}
