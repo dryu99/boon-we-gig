@@ -270,6 +270,7 @@ Website that aims to support local artists and venues. Not big artists swinging 
 - [x] add contact info with email ❗️❗️❗️
 - [ ] add venue route with location info
   - [ ] add location links (google maps, kakao maps, naver maps) ❗️❗️❗️
+- [ ] SEO nextjs: https://nextjs.org/learn/dashboard-app/adding-metadata
 
 # Post-MVP todos
 - [ ] scrape other cities bb
