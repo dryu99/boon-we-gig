@@ -6,7 +6,7 @@ export default async function Home() {
   const musicEvents = await fetchMusicEvents();
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col">
       <MusicEvents initialMusicEvents={musicEvents} />
     </div>
   );
