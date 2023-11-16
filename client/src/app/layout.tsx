@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`${courier.className} antialiased`}>
         <main className="mx-auto flex flex-col items-start sm:items-center min-h-screen p-4 bg-primary w-full md:w-5/6 overflow-x-hidden xl:w-[900px]">
           <Header />
-          {children}
+          <div className="flex-1">{children}</div>
           <Footer />
         </main>
       </body>
