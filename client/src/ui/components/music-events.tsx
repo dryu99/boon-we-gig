@@ -15,6 +15,9 @@ export const MusicEvents = ({
   initialMusicEvents: ClientMusicEvent[];
 }) => {
   const [dbOffset, setDbOffset] = useState(0);
+  const [hasMoreEvents, setHasMoreEventsLeft] = useState(
+    initialMusicEvents.length >= EVENTS_PER_LOAD
+  );
   const [musicEvents, setMusicEvents] =
     useState<ClientMusicEvent[]>(initialMusicEvents);
 
@@ -34,10 +37,14 @@ export const MusicEvents = ({
     const newDbOffset = dbOffset + EVENTS_PER_LOAD;
     const newMusicEvents = await fetchMusicEvents({
       offset: newDbOffset,
-    }); // TODO add error handling
+    });
 
+    if (newMusicEvents.length < EVENTS_PER_LOAD) {
+      setHasMoreEventsLeft(false);
+    }
+
+    // TODO add error handling
     // TODO add loading state
-    // TODO hide button when all events are queried
 
     setDbOffset(newDbOffset);
     setMusicEvents([...musicEvents, ...newMusicEvents]);
@@ -56,18 +63,20 @@ export const MusicEvents = ({
             />
           ))}
         </div>
-        <div className="sm:text-center">
-          <button
-            onClick={() => loadMore()}
-            className="text-primary font-bold py-2 sm:px-4"
-          >
-            {/* <div className="">** Load more **</div> */}
+        {hasMoreEvents && (
+          <div className="sm:text-center">
+            <button
+              onClick={() => loadMore()}
+              className="text-primary font-bold py-2 sm:px-4"
+            >
+              {/* <div className="">** Load more **</div> */}
 
-            <div className="-mb-1">------------</div>
-            <div className="">| Load more |</div>
-            <div className="-mt-1">------------</div>
-          </button>
-        </div>
+              <div className="-mb-1">------------</div>
+              <div className="">| Load more |</div>
+              <div className="-mt-1">------------</div>
+            </button>
+          </div>
+        )}
       </div>
     )
   );
@@ -93,7 +102,7 @@ const MusicEventGroup = ({
       <hr className="mb-2 w-28" />
       <div>
         {musicEvents.map((musicEvent, i) => (
-          <MusicEvent key={musicEvent.id} musicEvent={musicEvent} />
+          <MusicEvent key={musicEvent.link} musicEvent={musicEvent} />
         ))}
       </div>
     </div>
