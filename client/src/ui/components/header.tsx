@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <div className="text-center">
       <h1 className="text-2xl mt-3 mb-2 font-bold">{t("title")}</h1>
-      <CityPicker />
+      <CityPicker initialCity={t("seoul")} />
     </div>
   );
 };

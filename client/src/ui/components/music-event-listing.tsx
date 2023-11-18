@@ -1,4 +1,4 @@
-"use client";
+"use client"; // TODO have a feeling this is messing up sth rendering-wise. i still want the initial page load to be static
 
 import { ClientMusicEvent } from "@/lib/database/db-manager";
 import { fetchMusicEvents } from "@/lib/actions";
@@ -51,7 +51,6 @@ export const MusicEventListing = ({
     }
 
     // TODO add error handling
-    // TODO add loading state
 
     setDbOffset(newDbOffset);
     setMusicEvents([...musicEvents, ...newMusicEvents]);
