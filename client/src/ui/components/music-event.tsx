@@ -1,6 +1,6 @@
 import React from "react";
 import { ClientMusicEvent, ClientArtist } from "../../lib/database/db-manager";
-import { DateHelper } from "../../lib/date.helper";
+import * as DateHelper from "@/lib/date.helper";
 import Image from "next/image";
 import { LocationIcon } from "../svgs/location-icon";
 import { MusicNoteIcon } from "../svgs/music-note-icon";

@@ -1,7 +1,7 @@
 "use client";
 
 import { ClientMusicEvent } from "@/lib/database/db-manager";
-import { DateHelper } from "@/lib/date.helper";
+import * as DateHelper from "@/lib/date.helper";
 import { MusicEvent } from "./music-event";
 import { fetchMusicEvents } from "@/lib/actions";
 import { useMemo, useState } from "react";
