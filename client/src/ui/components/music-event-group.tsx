@@ -14,7 +14,7 @@ export const MusicEventGroup = ({
   locale: string;
   translations: StaticTranslations;
 }) => {
-  const groupDateParts = DateHelper.extractParts(groupDate);
+  const groupDateParts = DateHelper.extractParts(groupDate, locale);
 
   return (
     <div className="mb-3">
@@ -31,6 +31,7 @@ export const MusicEventGroup = ({
             key={musicEvent.link}
             musicEvent={musicEvent}
             translations={translations}
+            locale={locale}
           />
         ))}
       </div>

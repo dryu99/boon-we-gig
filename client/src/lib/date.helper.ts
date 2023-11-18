@@ -4,7 +4,12 @@ export type DateParts = {
   timeStr: string;
 };
 
-const DAYS_OF_WEEK = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+// TODO prob better way to do this with next-intl, also theres duplication here with locale keys
+// locale -> days of week strs
+const localeToDaysOfWeekMap: Record<string, string[]> = {
+  en: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
+  ko: ["일", "월", "화", "수", "목", "금", "토"],
+};
 
 const DateFormatter = new Intl.DateTimeFormat("en-US", {
   timeZone: "Asia/Seoul",
@@ -19,10 +24,12 @@ const TimeFormatter = new Intl.DateTimeFormat("en-US", {
   hour12: false,
 });
 
-export const extractParts = (date: Date): DateParts => {
+export const extractParts = (date: Date, locale: string): DateParts => {
   const dateStr = DateFormatter.format(date);
   const timeStr = TimeFormatter.format(date);
-  const dayOfWeek = getDayOfWeek(date.getDay());
+
+  const daysOfWeek = localeToDaysOfWeekMap[locale];
+  const dayOfWeek = daysOfWeek[date.getDay()];
 
   return {
     dayOfWeek,
@@ -36,8 +43,4 @@ export const isRecent = (date: Date) => {
   const diff = now.getTime() - date.getTime();
   const diffInHours = diff / (1000 * 60 * 60);
   return diffInHours < 24;
-};
-
-const getDayOfWeek = (dayOfWeek: number): string => {
-  return DAYS_OF_WEEK[dayOfWeek];
 };

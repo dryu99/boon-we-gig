@@ -8,11 +8,13 @@ import { StaticTranslations } from "@/lib/locale";
 export const MusicEvent = ({
   musicEvent,
   translations,
+  locale,
 }: {
   musicEvent: ClientMusicEvent;
   translations: StaticTranslations;
+  locale: string;
 }) => {
-  const dateParts = DateHelper.extractParts(musicEvent.startDateTime);
+  const dateParts = DateHelper.extractParts(musicEvent.startDateTime, locale);
   return (
     <div className="flex flex-row mb-3">
       {/* Date Section */}
