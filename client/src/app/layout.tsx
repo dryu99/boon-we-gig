@@ -4,17 +4,19 @@ import type { Metadata, Viewport } from "next";
 // TODO make this dynamic
 // TODO add more metadata: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#basic-fields
 export const metadata: Metadata = {
-  title: "BoonWeGig (Seoul) - Your Friendly Neighbourhood Gig Guide",
-  description:
-    "Discover indie concerts, underground venues, and local artists in Seoul, South Korea.",
   generator: "Next.js",
-  applicationName: "BoonWeGig",
+  applicationName: "BoonWeGig", // TODO should this be internationalized?
   referrer: "origin-when-cross-origin",
-  keywords: ["Concerts", "Indie", "Underground"],
   authors: { name: "JB" },
   alternates: {
     canonical: "https://www.boonwegig.com",
+    languages: {
+      en: "https://www.boonwegig.com/en",
+      ko: "https://www.boonwegig.com/ko",
+      "x-default": "https://www.boonwegig.com/en", // TODO double check this redirects correctly
+    },
   },
+  // TODO look into Open graph and Twitter metadata
   robots: {
     index: true,
     follow: true,

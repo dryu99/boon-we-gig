@@ -3,35 +3,46 @@ import { Footer } from "@/ui/components/footer";
 import { Header } from "@/ui/components/header";
 import { courier } from "@/ui/fonts";
 import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Script from "next/script";
+import { ReactNode } from "react";
 
-// TODO generate dynamic metadata
-// export async function generateMetadata({
-//   params: {locale}
-// }: Omit<Props, 'children'>) {
-//   const t = await getTranslations({locale, namespace: 'LocaleLayout'});
+type LayoutProps = {
+  children: ReactNode;
+  params: { locale: string };
+};
 
-//   return {
-//     title: t('title')
-//   };
-// }
+export const generateMetadata = async ({
+  params: { locale },
+}: Omit<LayoutProps, "children">): Promise<Metadata> => {
+  const t = await getTranslations({
+    locale,
+    namespace: "html-metadata",
+  });
 
-// export const generateStaticParams = () => {
-//   return LocaleConfig.locales.map((locale) => ({ locale }));
-// };
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+  };
+};
 
-export default function LocaleLayout({
+// enable static rendering
+export const generateStaticParams = () => {
+  return LocaleConfig.locales.map((locale) => ({ locale }));
+};
+
+export default async function LocaleLayout({
   children,
   params: { locale },
-}: {
-  children: React.ReactNode;
-  params: {
-    locale: string;
-  };
-}) {
-  // Validate that the incoming `locale` parameter is valid
+}: LayoutProps) {
+  // validate that the incoming `locale` parameter is valid
   if (!LocaleConfig.locales.includes(locale)) notFound();
+
+  // enable static rendering: https://next-intl-docs.vercel.app/docs/getting-started/app-router#static-rendering
+  unstable_setRequestLocale(locale);
 
   return (
     <html lang={locale}>
