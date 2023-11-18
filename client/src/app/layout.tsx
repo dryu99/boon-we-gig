@@ -1,10 +1,5 @@
 import "../ui/global.css";
 import type { Metadata, Viewport } from "next";
-import { courier } from "../ui/fonts";
-import Script from "next/script";
-import { Header } from "../ui/components/header";
-import { Footer } from "../ui/components/footer";
-import { Analytics } from "@vercel/analytics/react";
 
 // TODO make this dynamic
 // TODO add more metadata: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#basic-fields
@@ -39,24 +34,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <head>
-        <Script
-          async
-          data-domains="www.boonwegig.com"
-          src="https://umami-ten-indol.vercel.app/script.js"
-          data-website-id="89ba67d0-9f46-4234-b81b-989a67eba5cc"
-        />
-      </head>
-      <body className={`${courier.className} antialiased`}>
-        <main className="mx-auto flex flex-col items-center min-h-screen p-4 bg-primary w-full md:w-5/6 overflow-x-hidden xl:w-[900px]">
-          <Header />
-          <div className="flex-1">{children}</div>
-          <Footer />
-          <Analytics />
-        </main>
-      </body>
-    </html>
-  );
+  return children;
 }
