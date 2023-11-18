@@ -16,5 +16,4 @@ export const LocaleConfig = {
 export const LocaleToCountryMap: Record<string, string[]> = {
   en: ["CA", "US"],
   ko: ["KR"],
-  fr: ["FR", "CA"],
 };

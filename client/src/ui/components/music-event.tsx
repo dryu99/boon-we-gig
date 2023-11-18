@@ -3,7 +3,7 @@ import { ClientMusicEvent, ClientArtist } from "../../lib/database/db-manager";
 import * as DateHelper from "@/lib/date.helper";
 import { LocationIcon } from "../svgs/location-icon";
 import { MusicNoteIcon } from "../svgs/music-note-icon";
-import { StaticTranslations } from "@/lib/locale";
+import { LocaleToCountryMap, StaticTranslations } from "@/lib/locale";
 
 export const MusicEvent = ({
   musicEvent,
@@ -43,7 +43,13 @@ export const MusicEvent = ({
               className="hover:underline"
               data-umami-event="music-event-venue-link"
             >
-              {musicEvent.venue?.name}
+              {!musicEvent.venue
+                ? null
+                : // check for venue local name
+                LocaleToCountryMap[locale].includes(musicEvent.venue.country) &&
+                  musicEvent.venue.localName
+                ? musicEvent.venue.localName
+                : musicEvent.venue.name}
             </a>
           </div>
         </div>
