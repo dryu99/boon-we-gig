@@ -1,3 +1,4 @@
+import { LocaleConfig } from "@/lib/locale";
 import { Footer } from "@/ui/components/footer";
 import { Header } from "@/ui/components/header";
 import { courier } from "@/ui/fonts";
@@ -5,8 +6,20 @@ import { Analytics } from "@vercel/analytics/react";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-// Can be imported from a shared config
-const locales = ["en", "ko"];
+// TODO generate dynamic metadata
+// export async function generateMetadata({
+//   params: {locale}
+// }: Omit<Props, 'children'>) {
+//   const t = await getTranslations({locale, namespace: 'LocaleLayout'});
+
+//   return {
+//     title: t('title')
+//   };
+// }
+
+// export const generateStaticParams = () => {
+//   return LocaleConfig.locales.map((locale) => ({ locale }));
+// };
 
 export default function LocaleLayout({
   children,
@@ -18,7 +31,7 @@ export default function LocaleLayout({
   };
 }) {
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
+  if (!LocaleConfig.locales.includes(locale)) notFound();
 
   return (
     <html lang={locale}>

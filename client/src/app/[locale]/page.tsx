@@ -1,8 +1,7 @@
 import { fetchMusicEvents } from "@/lib/actions";
 import { MusicEventListing } from "@/ui/components/music-event-listing";
-import { useTranslations } from "next-intl";
 
-export default async function Index() {
+export default async function IndexPage() {
   const musicEvents = await fetchMusicEvents();
 
   return (
