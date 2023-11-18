@@ -6,5 +6,11 @@
     "title": "BoonWeGig (Seoul) - Your Friendly Neighbourhood Gig Guide",
     "description": "Discover indie concerts, underground venues, and local artists in Seoul, South Korea.",
     "keywords": "Seoul indie concert, Seoul local show, Seoul live music, Seoul underground concert"
+  },
+  "static": {
+    "loadMore": "Load More",
+    "link": "link",
+    "free": "FREE",
+    "new": "NEW"
   }
 }

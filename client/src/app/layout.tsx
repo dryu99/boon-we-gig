@@ -1,8 +1,6 @@
 import "../ui/global.css";
 import type { Metadata, Viewport } from "next";
 
-// TODO make this dynamic
-// TODO add more metadata: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#basic-fields
 export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "BoonWeGig", // TODO should this be internationalized?

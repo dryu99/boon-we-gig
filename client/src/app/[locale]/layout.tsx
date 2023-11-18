@@ -44,6 +44,7 @@ export default async function LocaleLayout({
   // enable static rendering: https://next-intl-docs.vercel.app/docs/getting-started/app-router#static-rendering
   unstable_setRequestLocale(locale);
 
+  // TODO look into optimizing scripts: afterInteractive, beforeInteractive, etc
   return (
     <html lang={locale}>
       <head>
