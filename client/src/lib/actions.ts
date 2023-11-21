@@ -26,6 +26,10 @@ export const fetchUpcomingMusicEvents = (
   });
 };
 
+export const fetchVenueBySlug = async (slug: string) => {
+  return DatabaseManager.getVenueBySlug(slug);
+};
+
 export const authAdmin = async (password: string): Promise<boolean> => {
   return password === process.env.WEB_ADMIN_PASSWORD;
 };

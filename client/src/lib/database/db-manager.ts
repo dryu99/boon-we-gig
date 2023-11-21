@@ -35,7 +35,13 @@ export type ClientArtist = Pick<
 
 export type ClientVenue = Pick<
   Selectable<Venue>,
-  "id" | "name" | "instagramUsername" | "city" | "country" | "localName"
+  | "id"
+  | "name"
+  | "instagramUsername"
+  | "city"
+  | "country"
+  | "localName"
+  | "slug"
 >;
 
 // TODO this is duplicated from event-scraper. we can do better (monorepo or sth to share code)
@@ -76,6 +82,24 @@ export class DatabaseManager {
       .updateTable("musicArtist")
       .set(musicArtist)
       .where("id", "=", id)
+      .executeTakeFirst();
+  }
+
+  public static async getVenueBySlug(
+    slug: string
+  ): Promise<ClientVenue | undefined> {
+    return this.db
+      .selectFrom("venue")
+      .select([
+        "id",
+        "name",
+        "instagramUsername",
+        "city",
+        "country",
+        "localName",
+        "slug",
+      ])
+      .where("slug", "=", slug)
       .executeTakeFirst();
   }
 
@@ -130,6 +154,7 @@ export class DatabaseManager {
                 "venue.city",
                 "venue.country",
                 "venue.localName", // TODO can possibly make this conditional on en/ route vs anything else
+                "venue.slug",
               ])
               .where("venue.reviewStatus", "=", "VALID")
               .whereRef("venue.id", "=", "musicEvent.venueId")
