@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { CityPicker } from "./city-picker";
 import { Link } from "@/lib/navigation";
 
 export const Header = () => {
@@ -30,7 +29,6 @@ export const Header = () => {
       <h1 className="text-2xl mt-3 mb-2 font-bold">
         <Link href="/">{t("title")}</Link>
       </h1>
-      <CityPicker initialCity={t("seoul")} />
     </div>
   );
 };
