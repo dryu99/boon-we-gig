@@ -65,6 +65,7 @@ export interface Venue {
   localName: string | null;
   name: string | null;
   reviewStatus: string;
+  slug: string | null;
   updatedAt: Generated<Timestamp>;
 }
 
