@@ -63,11 +63,11 @@ export const MusicEvent = ({
             <div>
               {/* TODO translate */}
               <div className="inline-block mr-1" title="Venue">
-                <LocationIcon />
+                <LocationIcon width="16px" />
               </div>
               <Link
                 href={`/venues/${musicEvent.venue.slug}`}
-                className="hover$:underline"
+                className="hover:underline"
                 data-umami-event="music-event-venue-link"
               >
                 {

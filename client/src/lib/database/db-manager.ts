@@ -154,7 +154,7 @@ export class DatabaseManager {
                 "venue.city",
                 "venue.country",
                 "venue.localName", // TODO can possibly make this conditional on en/ route vs anything else
-                "venue.slug",
+                "venue.slug", // TODO don't really need this for this query
               ])
               .where("venue.reviewStatus", "=", "VALID")
               .whereRef("venue.id", "=", "musicEvent.venueId")
