@@ -6,10 +6,11 @@ export const InstagramIcon = () => (
     x="0px"
     y="0px"
     viewBox="0 0 551.034 551.034"
-    width={"20px"}
-    height={"20px"}
+    width={"36px"}
+    height={"36px"}
     xmlSpace="preserve"
   >
+    <title>Instagram Icon</title>
     <g id="XMLID_13_">
       <linearGradient
         id="XMLID_2_"

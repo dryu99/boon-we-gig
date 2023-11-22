@@ -42,7 +42,14 @@ export type ClientVenue = Pick<
   | "country"
   | "localName"
   | "slug"
->;
+  | "externalMapsJson"
+> & {
+  externalMapsJson: {
+    googleMapsUrl?: string;
+    kakaoMapsUrl?: string;
+    naverMapsUrl?: string;
+  } | null;
+};
 
 // TODO this is duplicated from event-scraper. we can do better (monorepo or sth to share code)
 //      also db-schemas is duplicated.
@@ -98,6 +105,7 @@ export class DatabaseManager {
         "country",
         "localName",
         "slug",
+        "externalMapsJson",
       ])
       .where("slug", "=", slug)
       .executeTakeFirst();
@@ -155,6 +163,7 @@ export class DatabaseManager {
                 "venue.country",
                 "venue.localName", // TODO can possibly make this conditional on en/ route vs anything else
                 "venue.slug", // TODO don't really need this for this query
+                "venue.externalMapsJson", // TODO don't really need this for this query
               ])
               .where("venue.reviewStatus", "=", "VALID")
               .whereRef("venue.id", "=", "musicEvent.venueId")

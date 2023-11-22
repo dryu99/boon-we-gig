@@ -30,14 +30,6 @@ const main = async () => {
         continue;
       }
 
-      if (venue.externalMapsJson) {
-        console.error("external json already exists, skip", {
-          venueInstagramUsername,
-          externalMapsJson: venue.externalMapsJson,
-        });
-        continue;
-      }
-
       // update venue with external maps json
       const updatedVenue = await VenueModel.updateOneByInstagramUsername(
         venueInstagramUsername,
