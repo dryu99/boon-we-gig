@@ -1,25 +1,13 @@
 import { DatabaseManager } from "../database/db-manager";
 import { VenueModel } from "../database/models/venue";
-import { ExternalMapsJson } from "../utils/types";
-
-const externalMapsData: {
-  venueInstagramUsername: string;
-  externalMapsJson: ExternalMapsJson;
-}[] = [
-  {
-    venueInstagramUsername: "seendosi",
-    externalMapsJson: {
-      google_maps_url: "https://maps.app.goo.gl/4yy12URtMUpqNskE9",
-      kakao_maps_url: "https://kko.to/Ex-3Y3SlXM",
-      naver_maps_url: "https://naver.me/GLKA3Nx6",
-    },
-  },
-];
+import { scrapeableVenues } from "../static/venues";
 
 const main = async () => {
   DatabaseManager.start();
 
-  for (const { venueInstagramUsername, externalMapsJson } of externalMapsData) {
+  for (const venue of scrapeableVenues) {
+    const venueInstagramUsername = venue.instagramUsername;
+
     try {
       const venue = await VenueModel.getOneByInstagramUsername(
         venueInstagramUsername
@@ -34,7 +22,7 @@ const main = async () => {
       const updatedVenue = await VenueModel.updateOneByInstagramUsername(
         venueInstagramUsername,
         {
-          externalMapsJson: JSON.stringify(externalMapsJson),
+          externalMapsJson: JSON.stringify(venue.externalMapsJson),
         }
       );
 
@@ -44,8 +32,7 @@ const main = async () => {
       });
     } catch (error) {
       console.error("something went wrong, skip", {
-        venueInstagramUsername,
-        externalMapsJson,
+        venue,
       });
       console.error(error);
     }
