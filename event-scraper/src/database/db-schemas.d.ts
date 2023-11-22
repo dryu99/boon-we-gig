@@ -63,7 +63,7 @@ export interface Venue {
   instagramId: string | null;
   instagramUsername: string;
   localName: string | null;
-  name: string | null;
+  name: string;
   reviewStatus: string;
   slug: string;
   updatedAt: Generated<Timestamp>;
