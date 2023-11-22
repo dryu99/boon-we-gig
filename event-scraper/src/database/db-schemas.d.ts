@@ -59,6 +59,7 @@ export interface Venue {
   country: string;
   createdAt: Generated<Timestamp>;
   externalLink: string | null;
+  externalMapsJson: Json | null;
   id: Generated<string>;
   instagramId: string | null;
   instagramUsername: string;
