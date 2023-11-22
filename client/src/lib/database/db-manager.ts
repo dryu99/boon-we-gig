@@ -97,7 +97,7 @@ export class DatabaseManager {
   ): Promise<ClientVenue | undefined> {
     return this.db
       .selectFrom("venue")
-      .select([
+      .select((eb) => [
         "id",
         "name",
         "instagramUsername",
@@ -114,6 +114,7 @@ export class DatabaseManager {
   public static async getUpcomingMusicEvents(options: {
     offset: number;
     limit?: number;
+    filter?: { venueId?: string };
   }): Promise<ClientMusicEvent[]> {
     return (
       this.db
@@ -170,6 +171,9 @@ export class DatabaseManager {
           ).as("venue"),
         ])
         .where("venue.city", "=", "Seoul") // TODO make this dynamic later
+        .$if(options.filter?.venueId !== undefined, (qb) =>
+          qb.where("venue.id", "=", options.filter!.venueId!)
+        )
         // we have this conditional b/c we don't always update dev db but still want to see events
         .$if(process.env.NODE_ENV === "production", (qb) =>
           // note: should be no timezone issues given utc dates are being compared

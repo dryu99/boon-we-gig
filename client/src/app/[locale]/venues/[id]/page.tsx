@@ -1,8 +1,10 @@
-import { fetchVenueBySlug } from "@/lib/actions";
+import { fetchUpcomingMusicEvents, fetchVenueBySlug } from "@/lib/actions";
 import { toInstagramProfileLink } from "@/lib/external-links";
 import { LocaleToCountryMap } from "@/lib/locale";
+import { MusicEventListing } from "@/ui/components/music-event-listing";
 import { InstagramIcon } from "@/ui/svgs/instagram-icon";
 import { LocationIcon } from "@/ui/svgs/location-icon";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -17,8 +19,19 @@ export default async function VenuePage({
 
   const externalMapsJson = venue.externalMapsJson;
 
+  // TODO feels kind of bad to do 2 queries, we can prob do 1 in the fetch venue by slug
+  //      OR if we want to super optimize, we can make the fetch venue by slug query really simple (only fetch id column)
+  //         and after confirming existence we can render page using some suspense magic while the music events are waiting to be fetched
+  //      OR we could just do 1 query lol
+  const musicEvents = await fetchUpcomingMusicEvents({
+    offset: 0,
+    filter: { venueId: venue.id },
+  });
+
+  const t = await getTranslations("static"); // TODO this is duplicated from the shows page lol
+
   return (
-    <div>
+    <div className="flex flex-col">
       <div className="flex justify-center">
         <div className="mr-1">
           <LocationIcon width="20px" />
@@ -31,7 +44,7 @@ export default async function VenuePage({
             : venue.name}
         </h2>
       </div>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center mb-5">
         <a
           className="mx-1"
           href={toInstagramProfileLink(venue.instagramUsername)}
@@ -71,6 +84,17 @@ export default async function VenuePage({
           </a>
         )}
       </div>
+      <MusicEventListing
+        translations={{
+          loadMore: t("loadMore"),
+          link: t("link"),
+          new: t("new"),
+          free: t("free"),
+          recommended: t("recommended"),
+        }}
+        locale={params.locale}
+        initialMusicEvents={musicEvents}
+      />
     </div>
   );
 }
