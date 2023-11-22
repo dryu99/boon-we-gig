@@ -5,15 +5,15 @@ import { scrapeableVenues } from "../static/venues";
 const main = async () => {
   DatabaseManager.start();
 
-  for (const venue of scrapeableVenues) {
-    const venueInstagramUsername = venue.instagramUsername;
+  for (const scrapeableVenue of scrapeableVenues) {
+    const venueInstagramUsername = scrapeableVenue.instagramUsername;
 
     try {
-      const venue = await VenueModel.getOneByInstagramUsername(
+      const savedVenue = await VenueModel.getOneByInstagramUsername(
         venueInstagramUsername
       );
 
-      if (!venue) {
+      if (!savedVenue) {
         console.error("venue does not exist, skip", { venueInstagramUsername });
         continue;
       }
@@ -22,17 +22,17 @@ const main = async () => {
       const updatedVenue = await VenueModel.updateOneByInstagramUsername(
         venueInstagramUsername,
         {
-          externalMapsJson: JSON.stringify(venue.externalMapsJson),
+          externalMapsJson: JSON.stringify(scrapeableVenue.externalMapsJson),
         }
       );
 
       console.log("successfully updated venue", {
-        updatedVenue: venue.name,
-        externalMapsJson: venue.externalMapsJson,
+        updatedVenue: updatedVenue?.name,
+        externalMapsJson: updatedVenue?.externalMapsJson,
       });
     } catch (error) {
       console.error("something went wrong, skip", {
-        venue,
+        venue: scrapeableVenue,
       });
       console.error(error);
     }
