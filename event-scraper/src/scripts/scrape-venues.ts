@@ -53,8 +53,12 @@ const saveVenues = async (
         continue;
       }
 
+      const name = user.name || venueUsername;
+      const slug = name.toLowerCase().replace(/\s/g, "-");
+
       const venue: NewVenue = {
-        name: user.name,
+        name,
+        slug,
         instagramUsername: venueUsername,
         instagramId: user.id,
         city,
