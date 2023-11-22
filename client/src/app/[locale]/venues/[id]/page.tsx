@@ -25,7 +25,8 @@ export default async function VenuePage({
         </div>
 
         <h2>
-          {LocaleToCountryMap[params.locale].includes(venue.country)
+          {LocaleToCountryMap[params.locale].includes(venue.country) &&
+          venue.localName
             ? venue.localName
             : venue.name}
         </h2>
@@ -54,6 +55,7 @@ export default async function VenuePage({
               alt="Naver Maps Icon"
               width={36}
               height={36}
+              className="rounded"
             />
           </a>
         )}
@@ -64,6 +66,7 @@ export default async function VenuePage({
               alt="Kakao Maps Icon"
               width={36}
               height={36}
+              className="rounded"
             />
           </a>
         )}
