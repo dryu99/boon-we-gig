@@ -63,7 +63,7 @@ const saveVenues = async (
         instagramId: user.id,
         city,
         country,
-        reviewStatus: ReviewStatus.VALID,
+        reviewStatus: ReviewStatus.PENDING,
         businessAddressJson: user.businessAddressJson,
         businessEmail: user.businessEmail,
         businessPhoneNumber: user.businessPhoneNumber,
