@@ -1,10 +1,10 @@
 import { Insertable, Selectable, sql } from "kysely";
 import { InstagramPost } from "../../services/instagram.service";
 import { ReviewStatus } from "../../utils/types";
-import { MusicEvent, Venue } from "../db-schemas";
+import { MusicEvent, MusicEventArtists, Venue } from "../db-schemas";
 import { SavedVenue } from "./venue";
 import { DatabaseManager } from "../db-manager";
-import { SavedMusicArtist } from "./music-artist";
+import { MusicArtistModel, SavedMusicArtist } from "./music-artist";
 import { TimezoneOffsets } from "../../utils/time";
 import { AppError } from "../../utils/error";
 
@@ -24,6 +24,7 @@ export type ParsedMusicEvent = {
 
 export type NewMusicEvent = Insertable<MusicEvent>;
 export type SavedMusicEvent = Selectable<MusicEvent>;
+export type SavedMusicEventArtists = Selectable<MusicEventArtists>;
 
 export type NewMusicEventWithArtistNames = NewMusicEvent & {
   artistNames: string[];
@@ -47,6 +48,49 @@ export class MusicEventModel {
       .onConflict((oc) => oc.columns(["venueId", "startDateTime"]).doNothing())
       .returning("id")
       .executeTakeFirstOrThrow();
+  }
+
+  public static async addOneWithArtists(
+    newEvent: NewMusicEventWithArtistNames
+  ): Promise<{
+    savedMusicEvent: Pick<SavedMusicEvent, "id" | "link">;
+    savedArtists: Pick<SavedMusicArtist, "id" | "name">[];
+    savedMusicEventArtists: SavedMusicEventArtists[];
+  }> {
+    const savedMusicEvent = await DatabaseManager.db
+      .insertInto("musicEvent")
+      .values(newEvent)
+      .onConflict((oc) => oc.columns(["venueId", "startDateTime"]).doNothing())
+      .returning(["id", "link"])
+      .executeTakeFirstOrThrow();
+
+    // TODO add country + name unique constraint in music artist table
+    // TODO maybe move this logic to caller
+    const newArtists = newEvent.artistNames.map((artistName) =>
+      MusicArtistModel.toNew(artistName)
+    );
+
+    const savedArtists = await DatabaseManager.db
+      .insertInto("musicArtist")
+      .values(newArtists)
+      .onConflict((oc) => oc.columns(["name", "country"]).doNothing())
+      .onConflict((oc) => oc.column("instagramId").doNothing())
+      .returning(["id", "name"])
+      .execute();
+
+    const newEventArtistPairs = savedArtists.map((savedArtist) => ({
+      artistId: savedArtist.id,
+      eventId: savedMusicEvent.id,
+    }));
+
+    const savedMusicEventArtists = await DatabaseManager.db
+      .insertInto("musicEventArtists")
+      .values(newEventArtistPairs)
+      .onConflict((oc) => oc.columns(["artistId", "eventId"]).doNothing())
+      .returning(["artistId", "eventId"])
+      .execute();
+
+    return { savedMusicEvent, savedArtists, savedMusicEventArtists };
   }
 
   public static addMany(newEvents: NewMusicEvent[]) {
