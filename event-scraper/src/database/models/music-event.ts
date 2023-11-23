@@ -13,9 +13,12 @@ import { TimezoneOffsets } from "../../utils/time";
 import { AppError } from "../../utils/error";
 
 export enum MusicEventType {
-  CLASSICAL = "CLASSICAL",
-  DJ = "DJ",
+  CLASSICAL = "CLASSICAL", // TODO remove
+  DJ = "DJ", // TODO remove
   CONCERT = "CONCERT",
+  // TODO insert
+  // FESTIVAL
+  // CLUB?
 }
 
 // the music event parsed
@@ -45,7 +48,9 @@ export class MusicEventModel {
       .executeTakeFirst();
   }
 
-  public static addOne(newEvent: NewMusicEvent) {
+  public static addOne(
+    newEvent: NewMusicEvent
+  ): Promise<Pick<SavedMusicEvent, "id"> | undefined> {
     return DatabaseManager.db
       .insertInto("musicEvent")
       .values(newEvent)

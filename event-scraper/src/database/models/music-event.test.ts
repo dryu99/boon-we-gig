@@ -6,11 +6,19 @@ import {
   afterAll,
   beforeEach,
 } from "@jest/globals";
-import { MusicEventModel, MusicEventType, NewMusicEvent } from "./music-event";
+import {
+  MusicEventModel,
+  MusicEventType,
+  NewMusicEvent,
+  NewMusicEventWithArtists,
+} from "./music-event";
 import { ReviewStatus } from "../../utils/types";
 import { DatabaseManager } from "../db-manager";
 import path from "node:path";
 import { Migrator, NO_MIGRATIONS } from "kysely";
+import { MusicEventBuilder } from "../../tests/builders/music-event.builder";
+import { VenueBuilder } from "../../tests/builders/venue.builder";
+import { VenueModel } from "./venue";
 
 describe("MusicEventModel", () => {
   describe("inferStartDate", () => {
@@ -86,6 +94,7 @@ describe("MusicEventModel", () => {
     });
   });
 
+  // TODO write venue tests + setup
   describe("database operations", () => {
     let migrator: Migrator;
 
@@ -112,30 +121,60 @@ describe("MusicEventModel", () => {
       await migrateLatest();
     });
 
-    // TODO write venue tests + setup
-    test("addOne", async () => {
-      const newEvent: NewMusicEvent = {
-        // artists: [
-        //   { name: "Steve Marsh (@plainoldsteve87)", reviewStatus: "PENDING" },
-        //   {
-        //     name: "이지민 (@easy_m419 and @hey_unison)",
-        //     reviewStatus: "PENDING",
-        //   },
-        //   { name: "Chris Tharp (@busanmatjib)", reviewStatus: "PENDING" },
-        // ],
-        eventType: "CONCERT",
-        isFree: true,
-        link: "https://www.instagram.com/p/CzxkgtvrZ8x/",
-        reviewStatus: "PENDING",
-        startDateTime: new Date("2023-11-18T21:00:00+09:00"),
-        // venueId: "7ce91a92-fe97-40ff-9ce5-a22bbe2712ab",
-      };
+    describe("addOne", () => {
+      test("should successfully add a new music event", async () => {
+        const newEvent: NewMusicEvent = new MusicEventBuilder().build();
 
-      const { id } = await MusicEventModel.addOne(newEvent);
-      const result = await MusicEventModel.getOneByLink(newEvent.link);
+        await MusicEventModel.addOne(newEvent);
+        const result = await MusicEventModel.getOneByLink(newEvent.link);
 
-      expect(result).toMatchObject(newEvent);
+        expect(result).toMatchObject(newEvent);
+      });
+
+      test("should fail when adding a music event with duplicate venueId/startDateTime (unique constraint)", async () => {
+        const newVenue = new VenueBuilder().build();
+        const savedVenue = await VenueModel.addOne(newVenue);
+
+        const newEvent1 = new MusicEventBuilder()
+          .withVenueId(savedVenue!.id)
+          .build();
+
+        const newEvent2 = new MusicEventBuilder()
+          .withVenueId(savedVenue!.id)
+          .build();
+
+        const result1 = await MusicEventModel.addOne(newEvent1);
+        expect(result1).toBeDefined();
+
+        const result2 = MusicEventModel.addOne(newEvent2);
+        await expect(result2).rejects.toThrow();
+      });
     });
+
+    // describe("addOneWithArtists", async () => {
+    //   test("should ", async () => {
+    //     const newEvent: NewMusicEventWithArtists = {
+    //       artists: [
+    //         { name: "Steve Marsh (@plainoldsteve87)", reviewStatus: "PENDING" },
+    //         {
+    //           name: "이지민 (@easy_m419 and @hey_unison)",
+    //           reviewStatus: "PENDING",
+    //         },
+    //         { name: "Chris Tharp (@busanmatjib)", reviewStatus: "PENDING" },
+    //       ],
+    //       eventType: "CONCERT",
+    //       isFree: true,
+    //       link: "https://www.instagram.com/p/CzxkgtvrZ8x/",
+    //       reviewStatus: "PENDING",
+    //       startDateTime: new Date("2023-11-18T21:00:00+09:00"),
+    //     };
+
+    //     await MusicEventModel.addOneWithArtists(newEvent);
+    //     const result = await MusicEventModel.getOneByLink(newEvent.link);
+
+    //     expect(result).toMatchObject(newEvent);
+    //   });
+    // });
 
     async function migrateDown() {
       const { error, results } = await migrator.migrateTo(NO_MIGRATIONS);
