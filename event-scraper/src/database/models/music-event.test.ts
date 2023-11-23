@@ -1,6 +1,11 @@
-import { describe, expect, test } from "@jest/globals";
+import { describe, expect, test, beforeAll, afterAll } from "@jest/globals";
 import { MusicEventModel, MusicEventType } from "./music-event";
 import { ReviewStatus } from "../../utils/types";
+import { DatabaseManager } from "../db-manager";
+import path from "node:path";
+import { Kysely, Migrator, NO_MIGRATIONS, PostgresDialect } from "kysely";
+import { Pool } from "pg";
+import { afterEach, beforeEach } from "node:test";
 
 describe("MusicEventModel", () => {
   describe("inferStartDate", () => {
@@ -74,5 +79,46 @@ describe("MusicEventModel", () => {
         venueId: "venue1",
       });
     });
+  });
+
+  describe("database operations", () => {
+    let migrator: Migrator;
+
+    beforeAll(async () => {
+      // Start db
+      DatabaseManager.start();
+      migrator = DatabaseManager.getMigrator(
+        path.join(__dirname, "../migrations")
+      );
+    });
+
+    afterAll(async () => {
+      // Stop db
+      await migrateDown();
+      await DatabaseManager.stop();
+    });
+
+    // Reset DB state
+    beforeEach(async () => {
+      // TODO doesn't seem very clean to use migrations to reset, we just want to reset the db after every test so tests are stateless
+      //      there's prob a way to achieve this without migrations (e.g. transaction rollback: https://github.com/kysely-org/kysely/issues/257)
+      //      but for now this will do
+      await migrateDown();
+      await migrateLatest();
+    });
+
+    test("addOne", () => {
+      console.log("hello world");
+    });
+
+    async function migrateDown() {
+      const { error, results } = await migrator.migrateTo(NO_MIGRATIONS);
+      error && console.error("migration-down for test db failed", error);
+    }
+
+    async function migrateLatest() {
+      const { error, results } = await migrator.migrateToLatest();
+      error && console.error("migration-latest for test db failed", error);
+    }
   });
 });
