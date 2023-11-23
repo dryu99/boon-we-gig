@@ -67,47 +67,52 @@ export class MusicEventModel {
     // @ts-ignore
     delete newEvent.artists;
 
-    const savedMusicEvent = await DatabaseManager.db
-      .insertInto("musicEvent")
-      .values(newEvent)
-      .onConflict((oc) => oc.columns(["venueId", "startDateTime"]).doNothing())
-      .returning(["id", "link"])
-      .executeTakeFirstOrThrow();
+    // use transaction since this operation should be atomic
+    return DatabaseManager.db.transaction().execute(async (trx) => {
+      const savedMusicEvent = await trx
+        .insertInto("musicEvent")
+        .values(newEvent)
+        .onConflict((oc) =>
+          oc.columns(["venueId", "startDateTime"]).doNothing()
+        )
+        .returning(["id", "link"])
+        .executeTakeFirstOrThrow();
 
-    await DatabaseManager.db
-      .insertInto("musicArtist")
-      .values(newArtists)
-      // TODO but how to handle case where we have a genuinely different artist? wouldn't we want to know and log that somewhere?
-      .onConflict((oc) => oc.columns(["name", "country"]).doNothing())
-      .onConflict((oc) => oc.column("instagramId").doNothing())
-      .execute();
+      await trx
+        .insertInto("musicArtist")
+        .values(newArtists)
+        // TODO but how to handle case where we have a genuinely different artist? wouldn't we want to know and log that somewhere?
+        .onConflict((oc) => oc.columns(["name", "country"]).doNothing())
+        .onConflict((oc) => oc.column("instagramId").doNothing())
+        .execute();
 
-    // TODO maybe we should also check country here too...
-    // since prev query won't return ids for conflicted rows (i.e. artists that already exist)
-    //   we need to run another select query
-    const savedArtists = await DatabaseManager.db
-      .selectFrom("musicArtist")
-      .select(["id", "name"])
-      .where(
-        "name",
-        "in",
-        newArtists.map((artist) => artist.name)
-      )
-      .execute();
+      // TODO maybe we should also check country here too...
+      // since prev query won't return ids for conflicted rows (i.e. artists that already exist)
+      //   we need to run another select query
+      const savedArtists = await trx
+        .selectFrom("musicArtist")
+        .select(["id", "name"])
+        .where(
+          "name",
+          "in",
+          newArtists.map((artist) => artist.name)
+        )
+        .execute();
 
-    const newEventArtistPairs = savedArtists.map((savedArtist) => ({
-      artistId: savedArtist.id,
-      eventId: savedMusicEvent.id,
-    }));
+      const newEventArtistPairs = savedArtists.map((savedArtist) => ({
+        artistId: savedArtist.id,
+        eventId: savedMusicEvent.id,
+      }));
 
-    const savedMusicEventArtists = await DatabaseManager.db
-      .insertInto("musicEventArtists")
-      .values(newEventArtistPairs)
-      .onConflict((oc) => oc.columns(["artistId", "eventId"]).doNothing())
-      .returning(["artistId", "eventId"])
-      .execute();
+      const savedMusicEventArtists = await trx
+        .insertInto("musicEventArtists")
+        .values(newEventArtistPairs)
+        .onConflict((oc) => oc.columns(["artistId", "eventId"]).doNothing())
+        .returning(["artistId", "eventId"])
+        .execute();
 
-    return { savedMusicEvent, savedArtists, savedMusicEventArtists };
+      return { savedMusicEvent, savedArtists, savedMusicEventArtists };
+    });
   }
 
   public static addMany(newEvents: NewMusicEvent[]) {
