@@ -1,11 +1,16 @@
-import { describe, expect, test, beforeAll, afterAll } from "@jest/globals";
-import { MusicEventModel, MusicEventType } from "./music-event";
+import {
+  describe,
+  expect,
+  test,
+  beforeAll,
+  afterAll,
+  beforeEach,
+} from "@jest/globals";
+import { MusicEventModel, MusicEventType, NewMusicEvent } from "./music-event";
 import { ReviewStatus } from "../../utils/types";
 import { DatabaseManager } from "../db-manager";
 import path from "node:path";
-import { Kysely, Migrator, NO_MIGRATIONS, PostgresDialect } from "kysely";
-import { Pool } from "pg";
-import { afterEach, beforeEach } from "node:test";
+import { Migrator, NO_MIGRATIONS } from "kysely";
 
 describe("MusicEventModel", () => {
   describe("inferStartDate", () => {
@@ -107,18 +112,41 @@ describe("MusicEventModel", () => {
       await migrateLatest();
     });
 
-    test("addOne", () => {
-      console.log("hello world");
+    // TODO write venue tests + setup
+    test("addOne", async () => {
+      const newEvent: NewMusicEvent = {
+        // artists: [
+        //   { name: "Steve Marsh (@plainoldsteve87)", reviewStatus: "PENDING" },
+        //   {
+        //     name: "이지민 (@easy_m419 and @hey_unison)",
+        //     reviewStatus: "PENDING",
+        //   },
+        //   { name: "Chris Tharp (@busanmatjib)", reviewStatus: "PENDING" },
+        // ],
+        eventType: "CONCERT",
+        isFree: true,
+        link: "https://www.instagram.com/p/CzxkgtvrZ8x/",
+        reviewStatus: "PENDING",
+        startDateTime: new Date("2023-11-18T21:00:00+09:00"),
+        // venueId: "7ce91a92-fe97-40ff-9ce5-a22bbe2712ab",
+      };
+
+      const { id } = await MusicEventModel.addOne(newEvent);
+      const result = await MusicEventModel.getOneByLink(newEvent.link);
+
+      expect(result).toMatchObject(newEvent);
     });
 
     async function migrateDown() {
       const { error, results } = await migrator.migrateTo(NO_MIGRATIONS);
       error && console.error("migration-down for test db failed", error);
+      // results && results.forEach((result) => console.log(result));
     }
 
     async function migrateLatest() {
       const { error, results } = await migrator.migrateToLatest();
       error && console.error("migration-latest for test db failed", error);
+      // results && results.forEach((result) => console.log(result));
     }
   });
 });
