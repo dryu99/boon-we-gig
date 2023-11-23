@@ -56,7 +56,16 @@ describe("MusicEventModel", () => {
         }
       );
       expect(result).toEqual({
-        artistNames: ["artist1", "artist2"],
+        artists: [
+          {
+            name: "artist1",
+            reviewStatus: ReviewStatus.PENDING,
+          },
+          {
+            name: "artist2",
+            reviewStatus: ReviewStatus.PENDING,
+          },
+        ],
         eventType: MusicEventType.CONCERT,
         isFree: true,
         link: "https://www.instagram.com/p/123/",
