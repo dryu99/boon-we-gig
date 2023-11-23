@@ -3,10 +3,9 @@ import { InstagramPost, InstagramService } from "./services/instagram.service";
 import { ChatGptService } from "./services/chatgpt.service";
 import {
   MusicEventModel,
-  NewMusicEventWithArtistNames,
+  NewMusicEventWithArtists,
 } from "./database/models/music-event";
 import { SavedVenue, VenueModel } from "./database/models/venue";
-import { DatabaseManager } from "./database/db-manager";
 import { ExternalScraperService } from "./services/external-scraper.service";
 import ErrorTrackerService from "./services/error-tracker.service";
 
@@ -83,8 +82,8 @@ export class Server {
   private static async parseEventsFromVenuePosts(
     venue: SavedVenue,
     posts: InstagramPost[]
-  ): Promise<NewMusicEventWithArtistNames[]> {
-    const events: NewMusicEventWithArtistNames[] = [];
+  ): Promise<NewMusicEventWithArtists[]> {
+    const events: NewMusicEventWithArtists[] = [];
     for (const post of posts) {
       try {
         logger.info("Processing post", {
@@ -143,7 +142,7 @@ export class Server {
 
   // INVARIANT: assume all events have at least 1 artist
   private static async saveEventsWithArtists(
-    events: NewMusicEventWithArtistNames[]
+    events: NewMusicEventWithArtists[]
   ) {
     const dbStats = {
       savedEventCount: 0,

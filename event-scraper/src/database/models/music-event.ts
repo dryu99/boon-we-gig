@@ -4,7 +4,11 @@ import { ReviewStatus } from "../../utils/types";
 import { MusicEvent, MusicEventArtists, Venue } from "../db-schemas";
 import { SavedVenue } from "./venue";
 import { DatabaseManager } from "../db-manager";
-import { MusicArtistModel, SavedMusicArtist } from "./music-artist";
+import {
+  MusicArtistModel,
+  NewMusicArtist,
+  SavedMusicArtist,
+} from "./music-artist";
 import { TimezoneOffsets } from "../../utils/time";
 import { AppError } from "../../utils/error";
 
@@ -26,8 +30,8 @@ export type NewMusicEvent = Insertable<MusicEvent>;
 export type SavedMusicEvent = Selectable<MusicEvent>;
 export type SavedMusicEventArtists = Selectable<MusicEventArtists>;
 
-export type NewMusicEventWithArtistNames = NewMusicEvent & {
-  artistNames: string[];
+export type NewMusicEventWithArtists = NewMusicEvent & {
+  artists: NewMusicArtist[];
 };
 
 export class MusicEventModel {
@@ -51,12 +55,18 @@ export class MusicEventModel {
   }
 
   public static async addOneWithArtists(
-    newEvent: NewMusicEventWithArtistNames
+    newEvent: NewMusicEventWithArtists
   ): Promise<{
     savedMusicEvent: Pick<SavedMusicEvent, "id" | "link">;
     savedArtists: Pick<SavedMusicArtist, "id" | "name">[];
     savedMusicEventArtists: SavedMusicEventArtists[];
   }> {
+    const newArtists = newEvent.artists;
+
+    // TODO a lil wack that we have to do this, but db doesn't like unexpected fields
+    // @ts-ignore
+    delete newEvent.artists;
+
     const savedMusicEvent = await DatabaseManager.db
       .insertInto("musicEvent")
       .values(newEvent)
@@ -64,18 +74,25 @@ export class MusicEventModel {
       .returning(["id", "link"])
       .executeTakeFirstOrThrow();
 
-    // TODO add country + name unique constraint in music artist table
-    // TODO maybe move this logic to caller
-    const newArtists = newEvent.artistNames.map((artistName) =>
-      MusicArtistModel.toNew(artistName)
-    );
-
-    const savedArtists = await DatabaseManager.db
+    await DatabaseManager.db
       .insertInto("musicArtist")
       .values(newArtists)
+      // TODO but how to handle case where we have a genuinely different artist? wouldn't we want to know and log that somewhere?
       .onConflict((oc) => oc.columns(["name", "country"]).doNothing())
       .onConflict((oc) => oc.column("instagramId").doNothing())
-      .returning(["id", "name"])
+      .execute();
+
+    // TODO maybe we should also check country here too...
+    // since prev query won't return ids for conflicted rows (i.e. artists that already exist)
+    //   we need to run another select query
+    const savedArtists = await DatabaseManager.db
+      .selectFrom("musicArtist")
+      .select(["id", "name"])
+      .where(
+        "name",
+        "in",
+        newArtists.map((artist) => artist.name)
+      )
       .execute();
 
     const newEventArtistPairs = savedArtists.map((savedArtist) => ({
@@ -105,7 +122,7 @@ export class MusicEventModel {
     parsedEvent: ParsedMusicEvent, // INVARIANT: assume parsedEvent is valid (since we should've validated beforehand)
     post: InstagramPost,
     venue: SavedVenue
-  ): NewMusicEventWithArtistNames {
+  ): NewMusicEventWithArtists {
     const timezoneOffset = TimezoneOffsets[venue.city.toLowerCase()];
     const inferredStartDateStr = this.inferStartDate(
       parsedEvent.startDateTime!,
@@ -115,7 +132,11 @@ export class MusicEventModel {
     return {
       startDateTime: inferredStartDateStr + timezoneOffset,
       isFree: parsedEvent.isFree,
-      artistNames: parsedEvent.musicArtists ?? [],
+      artists: parsedEvent.musicArtists
+        ? parsedEvent.musicArtists.map((artistName) =>
+            MusicArtistModel.toNew(artistName)
+          )
+        : [],
       eventType: parsedEvent.eventType,
       venueId: venue.id,
       link: post.link,
