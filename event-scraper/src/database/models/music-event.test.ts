@@ -19,6 +19,7 @@ import { Migrator, NO_MIGRATIONS } from "kysely";
 import { MusicEventBuilder } from "../../tests/builders/music-event.builder";
 import { VenueBuilder } from "../../tests/builders/venue.builder";
 import { VenueModel } from "./venue";
+import { MusicArtistModel } from "./music-artist";
 
 describe("MusicEventModel", () => {
   describe("inferStartDate", () => {
@@ -116,22 +117,43 @@ describe("MusicEventModel", () => {
     beforeEach(async () => {
       // TODO doesn't seem very clean to use migrations to reset, we just want to reset the db after every test so tests are stateless
       //      there's prob a way to achieve this without migrations (e.g. transaction rollback: https://github.com/kysely-org/kysely/issues/257)
-      //      but for now this will do
+      //      doing this is also prob slower than just clearing tables. but for now this will do
       await migrateDown();
       await migrateLatest();
     });
 
     describe("addOne", () => {
-      test("should successfully add a new music event", async () => {
+      test("should successfully add music event", async () => {
         const newEvent: NewMusicEvent = new MusicEventBuilder().build();
 
-        await MusicEventModel.addOne(newEvent);
-        const result = await MusicEventModel.getOneByLink(newEvent.link);
+        const result = await MusicEventModel.addOne(newEvent);
+        const savedMusicEvent = await MusicEventModel.getOneById(result!.id);
 
-        expect(result).toMatchObject(newEvent);
+        expect(savedMusicEvent).toMatchObject(newEvent);
       });
 
-      test("should fail when adding a music event with duplicate venueId/startDateTime (unique constraint)", async () => {
+      test("should successfully add multiple music events with the same venue but different start time", async () => {
+        const newVenue = new VenueBuilder().build();
+        const savedVenue = await VenueModel.addOne(newVenue);
+
+        const newEvent1 = new MusicEventBuilder()
+          .withVenueId(savedVenue!.id)
+          .withStartDateTime("2023-11-18T21:00:00+09:00")
+          .build();
+
+        const newEvent2 = new MusicEventBuilder()
+          .withVenueId(savedVenue!.id)
+          .withStartDateTime("2023-11-18T21:30:00+09:00")
+          .build();
+
+        const result1 = await MusicEventModel.addOne(newEvent1);
+        expect(result1).toBeDefined();
+
+        const result2 = await MusicEventModel.addOne(newEvent2);
+        expect(result2).toBeDefined();
+      });
+
+      test("should fail when adding a music event with duplicate venue/start time (unique constraint)", async () => {
         const newVenue = new VenueBuilder().build();
         const savedVenue = await VenueModel.addOne(newVenue);
 
@@ -151,30 +173,104 @@ describe("MusicEventModel", () => {
       });
     });
 
-    // describe("addOneWithArtists", async () => {
-    //   test("should ", async () => {
-    //     const newEvent: NewMusicEventWithArtists = {
-    //       artists: [
-    //         { name: "Steve Marsh (@plainoldsteve87)", reviewStatus: "PENDING" },
-    //         {
-    //           name: "이지민 (@easy_m419 and @hey_unison)",
-    //           reviewStatus: "PENDING",
-    //         },
-    //         { name: "Chris Tharp (@busanmatjib)", reviewStatus: "PENDING" },
-    //       ],
-    //       eventType: "CONCERT",
-    //       isFree: true,
-    //       link: "https://www.instagram.com/p/CzxkgtvrZ8x/",
-    //       reviewStatus: "PENDING",
-    //       startDateTime: new Date("2023-11-18T21:00:00+09:00"),
-    //     };
+    describe("addOneWithArtists", () => {
+      test("should successfully add music event with artists", async () => {
+        const artists = [
+          { name: "jpitme", reviewStatus: "PENDING" },
+          { name: "빌전 (@billjohn)", reviewStatus: "PENDING" },
+          { name: "yoshiyoshino", reviewStatus: "PENDING" },
+        ];
+        const newEvent = new MusicEventBuilder()
+          .withArtists(artists)
+          .build() as NewMusicEventWithArtists;
 
-    //     await MusicEventModel.addOneWithArtists(newEvent);
-    //     const result = await MusicEventModel.getOneByLink(newEvent.link);
+        // call
+        const result = await MusicEventModel.addOneWithArtists(newEvent);
 
-    //     expect(result).toMatchObject(newEvent);
-    //   });
-    // });
+        // assert event was saved
+        const savedMusicEvent = await MusicEventModel.getOneById(
+          result.savedMusicEvent.id
+        );
+        expect(savedMusicEvent).toBeDefined();
+
+        // assert artists were saved
+        const savedArtists = await MusicArtistModel.getManyByIds(
+          result.savedArtists.map((a) => a.id)
+        );
+        expect(savedArtists).toHaveLength(artists.length);
+        expect(savedArtists).toContainEqual(
+          expect.objectContaining(result.savedArtists[0])
+        );
+        expect(savedArtists).toContainEqual(
+          expect.objectContaining(result.savedArtists[1])
+        );
+        expect(savedArtists).toContainEqual(
+          expect.objectContaining(result.savedArtists[2])
+        );
+
+        // assert event-artist pair was saved
+        const savedPairs = await DatabaseManager.db
+          .selectFrom("musicEventArtists")
+          .selectAll()
+          .where("eventId", "=", result.savedMusicEvent.id)
+          .where(
+            "artistId",
+            "in",
+            result.savedArtists.map((a) => a.id)
+          )
+          .execute();
+
+        expect(savedPairs).toHaveLength(result.savedMusicEventArtists.length);
+        expect(savedPairs).toContainEqual(result.savedMusicEventArtists[0]);
+        expect(savedPairs).toContainEqual(result.savedMusicEventArtists[1]);
+        expect(savedPairs).toContainEqual(result.savedMusicEventArtists[2]);
+      });
+    });
+
+    test("should successfully add music event with artists, even if artist/country already exists (unique constraint)", async () => {
+      const duplicateArtist = {
+        name: "jpitme",
+        country: "KO",
+        reviewStatus: "PENDING",
+      };
+      const artists = [
+        duplicateArtist,
+        { name: "빌전 (@billjohn)", reviewStatus: "PENDING" },
+        { name: "yoshiyoshino", reviewStatus: "PENDING" },
+      ];
+      const newEvent1 = new MusicEventBuilder()
+        .withArtists(artists)
+        .build() as NewMusicEventWithArtists;
+
+      // call
+      await MusicEventModel.addOneWithArtists(newEvent1);
+
+      // call again
+      const newEvent2 = new MusicEventBuilder()
+        .withArtists([
+          duplicateArtist,
+          { name: "michael yoshi", reviewStatus: "PENDING" },
+        ])
+        .build() as NewMusicEventWithArtists;
+      const result2 = await MusicEventModel.addOneWithArtists(newEvent2);
+
+      // assert that no duplicate artists were saved
+      expect(result2.savedArtists).toHaveLength(1);
+      expect(result2.savedArtists).toContainEqual(
+        expect.objectContaining({ name: "michael yoshi" })
+      );
+
+      // assert all event-artist pairs were saved
+      const savedPairs = await DatabaseManager.db
+        .selectFrom("musicEventArtists")
+        .selectAll()
+        .where("eventId", "=", result2.savedMusicEvent.id)
+        .execute();
+
+      expect(savedPairs).toHaveLength(2);
+      expect(savedPairs).toContainEqual(result2.savedMusicEventArtists[0]);
+      expect(savedPairs).toContainEqual(result2.savedMusicEventArtists[1]);
+    });
 
     async function migrateDown() {
       const { error, results } = await migrator.migrateTo(NO_MIGRATIONS);

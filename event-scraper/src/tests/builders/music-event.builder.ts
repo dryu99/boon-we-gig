@@ -1,11 +1,13 @@
+import { NewMusicArtist } from "../../database/models/music-artist";
 import {
   NewMusicEvent,
   MusicEventType,
+  NewMusicEventWithArtists,
 } from "../../database/models/music-event";
 import { ReviewStatus } from "../../utils/types";
 
 export class MusicEventBuilder {
-  private musicEvent: NewMusicEvent;
+  private musicEvent: NewMusicEvent & { artists?: NewMusicArtist[] };
 
   constructor() {
     this.musicEvent = {
@@ -25,6 +27,11 @@ export class MusicEventBuilder {
 
   withVenueId(venueId: string) {
     this.musicEvent.venueId = venueId;
+    return this;
+  }
+
+  withArtists(artists: NewMusicArtist[]) {
+    this.musicEvent.artists = artists;
     return this;
   }
 

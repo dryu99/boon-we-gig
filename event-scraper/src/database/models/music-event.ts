@@ -38,6 +38,14 @@ export type NewMusicEventWithArtists = NewMusicEvent & {
 };
 
 export class MusicEventModel {
+  public static getOneById(id: string): Promise<SavedMusicEvent | undefined> {
+    return DatabaseManager.db
+      .selectFrom("musicEvent")
+      .where("id", "=", id)
+      .selectAll()
+      .executeTakeFirst();
+  }
+
   public static getOneByLink(
     link: string
   ): Promise<SavedMusicEvent | undefined> {
@@ -83,18 +91,22 @@ export class MusicEventModel {
         .returning(["id", "link"])
         .executeTakeFirstOrThrow();
 
-      await trx
+      // will return only those artists that were actually saved (i.e. ignores conflicts)
+      const savedArtists = await trx
         .insertInto("musicArtist")
         .values(newArtists)
         // TODO but how to handle case where we have a genuinely different artist? wouldn't we want to know and log that somewhere?
+        //      I think the point is what we expect here is nothing to happen, if duplicate artist name is encountered just skip and move on
         .onConflict((oc) => oc.columns(["name", "country"]).doNothing())
-        .onConflict((oc) => oc.column("instagramId").doNothing())
+        // TODO can only have one onConflict clause... should be fine since insta id isn't being added in our curr workflow, but worth digging into
+        // .onConflict((oc) => oc.column("instagramId").doNothing())
+        .returning(["id", "name"])
         .execute();
 
       // TODO maybe we should also check country here too...
       // since prev query won't return ids for conflicted rows (i.e. artists that already exist)
       //   we need to run another select query
-      const savedArtists = await trx
+      const allSavedArtists = await trx
         .selectFrom("musicArtist")
         .select(["id", "name"])
         .where(
@@ -104,7 +116,7 @@ export class MusicEventModel {
         )
         .execute();
 
-      const newEventArtistPairs = savedArtists.map((savedArtist) => ({
+      const newEventArtistPairs = allSavedArtists.map((savedArtist) => ({
         artistId: savedArtist.id,
         eventId: savedMusicEvent.id,
       }));
@@ -112,11 +124,14 @@ export class MusicEventModel {
       const savedMusicEventArtists = await trx
         .insertInto("musicEventArtists")
         .values(newEventArtistPairs)
-        .onConflict((oc) => oc.columns(["artistId", "eventId"]).doNothing())
         .returning(["artistId", "eventId"])
         .execute();
 
-      return { savedMusicEvent, savedArtists, savedMusicEventArtists };
+      return {
+        savedMusicEvent,
+        savedArtists,
+        savedMusicEventArtists,
+      };
     });
   }
 

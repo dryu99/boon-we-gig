@@ -17,6 +17,14 @@ export class MusicArtistModel {
       .executeTakeFirst();
   }
 
+  public static async getManyByIds(ids: string[]): Promise<SavedMusicArtist[]> {
+    return DatabaseManager.db
+      .selectFrom("musicArtist")
+      .where("id", "in", ids)
+      .selectAll()
+      .execute();
+  }
+
   public static async addOne(
     newArtist: NewMusicArtist
   ): Promise<SavedMusicArtist | undefined> {
