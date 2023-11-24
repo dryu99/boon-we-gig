@@ -115,13 +115,13 @@ export const MusicEvent = ({
         </div>
         {/* Link Section */}
         <div>
-          <a
-            className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-            href={musicEvent.link}
-            data-umami-event="music-event-external-link"
+          <Link
+            href={`/concerts/${musicEvent.slug}`}
+            className="text-sm underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+            data-umami-event="music-event-concert-link" // TODO rename lmao
           >
-            {translations.link}
-          </a>
+            more info
+          </Link>
         </div>
       </div>
     </div>

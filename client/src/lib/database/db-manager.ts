@@ -24,6 +24,7 @@ export type ClientMusicEvent = Pick<
   | "createdAt"
   | "eventType"
   | "reviewStatus"
+  | "slug"
 > & {
   artists: ClientArtist[];
   venue: ClientVenue | null; // TODO this null shouldn't be necessary, if the venue id exists then there should be a corresponding venue
@@ -107,6 +108,7 @@ export class DatabaseManager {
         "musicEvent.createdAt",
         "musicEvent.eventType",
         "musicEvent.reviewStatus",
+        "musicEvent.slug", // TODO is this needed here
         this.withMusicArtists(eb),
         this.withVenue(eb),
       ])
@@ -162,6 +164,7 @@ export class DatabaseManager {
           "musicEvent.createdAt",
           "musicEvent.eventType",
           "musicEvent.reviewStatus",
+          "musicEvent.slug",
           this.withMusicArtists(eb),
           this.withVenue(eb),
         ])
@@ -220,8 +223,8 @@ export class DatabaseManager {
           "venue.city",
           "venue.country",
           "venue.localName", // TODO can possibly make this conditional on en/ route vs anything else
-          "venue.slug", // TODO don't really need this for this query
-          "venue.externalMapsJson", // TODO don't really need this for this query
+          "venue.slug", // TODO don't really need this for all queries, just have it here for typing
+          "venue.externalMapsJson", // TODO don't really need this for all queries, just haev it here for typing
         ])
         .where("venue.reviewStatus", "=", "VALID")
         .whereRef("venue.id", "=", "musicEvent.venueId")

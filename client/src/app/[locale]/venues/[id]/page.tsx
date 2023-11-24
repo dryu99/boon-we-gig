@@ -47,6 +47,7 @@ export default async function VenuePage({
         <a
           className="mx-1"
           href={toInstagramProfileLink(venue.instagramUsername)}
+          // data-umami-event="" TODO add this
         >
           <InstagramIcon />
         </a>
