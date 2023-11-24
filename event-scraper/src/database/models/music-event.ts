@@ -167,6 +167,10 @@ export class MusicEventModel {
       venueId: venue.id,
       link: post.link,
       reviewStatus: ReviewStatus.PENDING,
+      // TODO shieeee didn't think about this fix it
+      slug: `${venue.name
+        .toLowerCase()
+        .replace(/\s/g, "-")}-${Math.random().toFixed(8)}`,
     };
   }
 

@@ -17,6 +17,7 @@ export class MusicEventBuilder {
       reviewStatus: ReviewStatus.PENDING,
       startDateTime: new Date("2023-12-25T21:00:00+09:00"),
       venueId: null,
+      slug: "example-slug",
     };
   }
 
