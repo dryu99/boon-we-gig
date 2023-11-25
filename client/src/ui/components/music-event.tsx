@@ -11,6 +11,8 @@ import {
   toYoutubeSearchLink,
 } from "@/lib/external-links";
 import { Link } from "@/lib/navigation";
+import { FreeTag, GenreTag, NewTag } from "./music-event-tags";
+import { InfoIcon } from "../svgs/info-icon";
 
 export const MusicEvent = ({
   musicEvent,
@@ -22,12 +24,7 @@ export const MusicEvent = ({
   locale: string;
 }) => {
   const dateParts = DateHelper.extractParts(musicEvent.startDateTime, locale);
-  const genres = extractKeyGenres(
-    musicEvent.artists
-      .map((artist) => artist.genre)
-      .filter((genre) => genre !== null) as MusicGenre[],
-    locale
-  );
+  const genres = extractKeyGenres(musicEvent.artists, locale);
   return (
     <div className="flex flex-row mb-3">
       {/* Date Section */}
@@ -42,16 +39,11 @@ export const MusicEvent = ({
           {/* Tag Section */}
           <div className="flex flex-col">
             {DateHelper.isRecent(musicEvent.createdAt) && (
-              <span className="text-green-500 mr-2">{translations.new}</span>
+              <NewTag text={translations.new} />
             )}
-            {musicEvent.isFree && (
-              <span className="text-yellow-400">{translations.free}</span>
-            )}
-
+            {musicEvent.isFree && <FreeTag text={translations.free} />}
             {genres.map((genre, i) => (
-              <span key={i + genre} className="text-blue-500">
-                {genre}
-              </span>
+              <GenreTag key={i} genre={genre} />
             ))}
           </div>
         </div>
@@ -114,13 +106,17 @@ export const MusicEvent = ({
           ))}
         </div>
         {/* Link Section */}
-        <div>
+        <div className="flex flex-row">
+          <div className="mr-1">
+            <InfoIcon />
+          </div>
+
           <Link
             href={`/concerts/${musicEvent.slug}`}
-            className="text-sm underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+            className="text-sm hover:underline"
             data-umami-event="music-event-concert-link" // TODO rename lmao
           >
-            more info
+            {"more info >>"}
           </Link>
         </div>
       </div>

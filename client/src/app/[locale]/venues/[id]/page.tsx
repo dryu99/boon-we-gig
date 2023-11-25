@@ -1,6 +1,11 @@
 import { fetchUpcomingMusicEvents, fetchVenueBySlug } from "@/lib/actions";
 import { toInstagramProfileLink } from "@/lib/external-links";
 import { LocaleToCountryMap } from "@/lib/locale";
+import {
+  GoogleMapsLink,
+  KakaoMapsLink,
+  NaverMapsLink,
+} from "@/ui/components/external-maps-link";
 import { MusicEventListing } from "@/ui/components/music-event-listing";
 import { InstagramIcon } from "@/ui/svgs/instagram-icon";
 import { LocationIcon } from "@/ui/svgs/location-icon";
@@ -52,48 +57,19 @@ export default async function VenuePage({
           <InstagramIcon />
         </a>
         {externalMapsJson?.googleMapsUrl && (
-          <a
-            className="mx-1"
-            href={externalMapsJson?.googleMapsUrl}
-            data-umami-event="google-maps-link"
-          >
-            <Image
-              src="/icons/google-maps.png"
-              alt="Google Maps Icon"
-              width={36}
-              height={36}
-            />
-          </a>
+          <div className="mx-1">
+            <GoogleMapsLink url={externalMapsJson?.googleMapsUrl} />
+          </div>
         )}
         {externalMapsJson?.naverMapsUrl && (
-          <a
-            className="mx-1"
-            href={externalMapsJson?.naverMapsUrl}
-            data-umami-event="naver-maps-link"
-          >
-            <Image
-              src="/icons/naver-maps.png"
-              alt="Naver Maps Icon"
-              width={36}
-              height={36}
-              className="rounded"
-            />
-          </a>
+          <div className="mx-1">
+            <NaverMapsLink url={externalMapsJson?.naverMapsUrl} />
+          </div>
         )}
         {externalMapsJson?.kakaoMapsUrl && (
-          <a
-            className="mx-1"
-            href={externalMapsJson?.kakaoMapsUrl}
-            data-umami-event="kakao-maps-link"
-          >
-            <Image
-              src="/icons/kakao-maps.png"
-              alt="Kakao Maps Icon"
-              width={36}
-              height={36}
-              className="rounded"
-            />
-          </a>
+          <div className="mx-1">
+            <KakaoMapsLink url={externalMapsJson?.kakaoMapsUrl} />
+          </div>
         )}
       </div>
       <MusicEventListing
