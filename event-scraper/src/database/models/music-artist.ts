@@ -65,7 +65,7 @@ export class MusicArtistModel {
     };
   }
 
-  private static generateSlug(artistName: string, id: UUID): string {
+  public static generateSlug(artistName: string, id: UUID): string {
     const regex = /^[A-Za-z0-9 .\-]+$/;
     const uuidParts = id.split("-");
 

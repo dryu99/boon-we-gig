@@ -73,11 +73,10 @@ export class VenueModel {
 
   public static toNew(user: InstagramUser, venue: ScrapeableVenue): NewVenue {
     const name = user.name || venue.instagramUsername;
-    const slug = name.toLowerCase().replace(/\s/g, "-");
 
     return {
       name,
-      slug,
+      slug: this.generateSlug(name),
       instagramUsername: venue.instagramUsername,
       instagramId: user.id,
       city: venue.city,
@@ -89,5 +88,9 @@ export class VenueModel {
       externalLink: user.externalLink,
       externalMapsJson: JSON.stringify(venue.externalMapsJson),
     };
+  }
+
+  public static generateSlug(name: string) {
+    return name.toLowerCase().replace(/\s/g, "-");
   }
 }
