@@ -3,7 +3,8 @@ import { ClientMusicEvent, ClientArtist } from "../../lib/database/db-manager";
 import * as DateHelper from "@/lib/date.helper";
 import { LocationIcon } from "../svgs/location-icon";
 import { MusicNoteIcon } from "../svgs/music-note-icon";
-import { LocaleToCountryMap, StaticTranslations } from "@/lib/locale";
+import { AppLocale, LocaleToCountryMap } from "@/lib/locale";
+import { StaticTranslations } from "@/lib/translation";
 import { ThumbsUpIcon } from "../svgs/thumbs-up-icon";
 import { MusicGenre, extractKeyGenres, localeToGenreMap } from "@/lib/genre";
 import {
@@ -22,7 +23,7 @@ export const MusicEvent = ({
 }: {
   musicEvent: ClientMusicEvent;
   translations: StaticTranslations;
-  locale: string;
+  locale: AppLocale;
 }) => {
   const dateParts = DateHelper.extractParts(musicEvent.startDateTime, locale);
   const genres = extractKeyGenres(musicEvent.artists, locale);
@@ -110,7 +111,7 @@ export const MusicEvent = ({
             className="text-sm hover:underline"
             data-umami-event="music-event-concert-link"
           >
-            {"more info >>"}
+            {`${translations.moreInfo} >>`}
           </Link>
         </div>
       </div>

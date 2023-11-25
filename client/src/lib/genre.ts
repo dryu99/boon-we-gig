@@ -1,4 +1,5 @@
 import { ClientArtist } from "./database/db-manager";
+import { AppLocale } from "./locale";
 
 export enum MusicGenre {
   ROCK = "rock",
@@ -55,7 +56,7 @@ export const localeToGenreMap: Record<string, Record<MusicGenre, string>> = {
 // TODO prob better way to do this such that locale and genre extraction are handled separately
 export const extractKeyGenres = (
   artists: ClientArtist[],
-  locale: string
+  locale: AppLocale
 ): string[] => {
   const genres = artists
     .map((artist) => artist.genre)

@@ -1,6 +1,7 @@
 import { fetchUpcomingMusicEvents, fetchVenueBySlug } from "@/lib/actions";
 import { toInstagramProfileLink } from "@/lib/external-links";
-import { LocaleToCountryMap } from "@/lib/locale";
+import { AppLocale, LocaleToCountryMap } from "@/lib/locale";
+import { unstable_getTranslations } from "@/lib/translation";
 import {
   GoogleMapsLink,
   KakaoMapsLink,
@@ -10,13 +11,12 @@ import { MusicEventListing } from "@/ui/components/music-event-listing";
 import { InstagramIcon } from "@/ui/svgs/instagram-icon";
 import { LocationIcon } from "@/ui/svgs/location-icon";
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export default async function VenuePage({
   params,
 }: {
-  params: { id: string; locale: string };
+  params: { id: string; locale: AppLocale };
 }) {
   const venue = await fetchVenueBySlug(params.id);
 
@@ -73,13 +73,7 @@ export default async function VenuePage({
         )}
       </div>
       <MusicEventListing
-        translations={{
-          loadMore: t("loadMore"),
-          link: t("link"),
-          new: t("new"),
-          free: t("free"),
-          recommended: t("recommended"),
-        }}
+        translations={unstable_getTranslations(t)}
         locale={params.locale}
         initialMusicEvents={musicEvents}
       />

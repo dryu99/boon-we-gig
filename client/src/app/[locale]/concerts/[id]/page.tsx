@@ -2,6 +2,7 @@ import { fetchMusicEventBySlug } from "@/lib/actions";
 import * as DateHelper from "@/lib/date.helper";
 import { toInstagramProfileLink } from "@/lib/external-links";
 import { extractKeyGenres } from "@/lib/genre";
+import { AppLocale } from "@/lib/locale";
 import { Link } from "@/lib/navigation";
 import { getVenueLocaleName } from "@/lib/venue.helper";
 import {
@@ -19,7 +20,7 @@ import { notFound } from "next/navigation";
 export default async function ConcertPage({
   params,
 }: {
-  params: { id: string; locale: string };
+  params: { id: string; locale: AppLocale };
 }) {
   const musicEvent = await fetchMusicEventBySlug(params.id);
 
@@ -42,7 +43,9 @@ export default async function ConcertPage({
       <h2 className="flex flex-col mb-2">
         <span className="text-3xl">
           {/* TODO day of week looks too big in korean */}
-          <span className="mr-2">{`${dateParts.dayOfWeek}`}</span>
+          <span
+            className={`mr-2 ${params.locale === "ko" ? "text-2xl" : ""}`}
+          >{`${dateParts.dayOfWeek}`}</span>
           <span className="mr-2">{`${dateParts.dateStr}`}</span>
           <span className="mr-2">-</span>
           <span>{`${dateParts.timeStr}`}</span>
@@ -77,7 +80,7 @@ export default async function ConcertPage({
         )}
       </div>
       <div className="text-center mb-5">
-        <h3 className="font-bold">feat.</h3>
+        <h3 className="font-bold">{t("lineup")}</h3>
         <hr className="w-20 mx-auto mb-1" />
         <div>
           {musicEvent.artists.map((a) => (
@@ -87,7 +90,7 @@ export default async function ConcertPage({
       </div>
 
       <div className="text-center mb-5">
-        <h3 className="font-bold">details</h3>
+        <h3 className="font-bold">{t("details")}</h3>
         <hr className="w-20 mx-auto mb-2" />
         <div className="flex justify-center">
           <a href={musicEvent.link} data-umami-event="concert-external-link">
@@ -97,7 +100,7 @@ export default async function ConcertPage({
       </div>
       {showTags && (
         <div className="text-center">
-          <h3 className="font-bold">tags</h3>
+          <h3 className="font-bold">{t("tags")}</h3>
           <hr className="w-20 mx-auto mb-1" />
           <div className="flex flex-col">
             {isRecent && <NewTag text={t("new")} />}
