@@ -33,6 +33,10 @@ export const fetchMusicEventBySlug = async (slug: string) => {
   return DatabaseManager.getMusicEventBySlug(slug);
 };
 
+export const fetchMusicArtistBySlug = async (slug: string) => {
+  return DatabaseManager.getMusicArtistBySlug(slug);
+};
+
 export const authAdmin = async (password: string): Promise<boolean> => {
   return password === process.env.WEB_ADMIN_PASSWORD;
 };

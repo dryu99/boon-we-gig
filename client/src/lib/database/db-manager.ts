@@ -39,6 +39,7 @@ export type ClientArtist = Pick<
   | "spotifyId"
   | "youtubeId"
   | "isRecommended"
+  | "slug"
 >;
 
 export type ClientVenue = Pick<
@@ -146,6 +147,25 @@ export class DatabaseManager {
       .executeTakeFirst();
   }
 
+  public static async getMusicArtistBySlug(
+    slug: string
+  ): Promise<ClientArtist | undefined> {
+    return this.db
+      .selectFrom("musicArtist")
+      .select((eb) => [
+        "musicArtist.id",
+        "musicArtist.name",
+        "musicArtist.genre",
+        "musicArtist.instagramUsername",
+        "musicArtist.spotifyId",
+        "musicArtist.youtubeId",
+        "musicArtist.isRecommended",
+        "musicArtist.slug",
+      ])
+      .where("slug", "=", slug)
+      .executeTakeFirst();
+  }
+
   public static async getUpcomingMusicEvents(options: {
     offset: number;
     limit: number;
@@ -211,6 +231,7 @@ export class DatabaseManager {
           "musicArtist.spotifyId",
           "musicArtist.youtubeId",
           "musicArtist.isRecommended",
+          "musicArtist.slug",
         ])
         .orderBy("musicArtist.name", "asc")
         .whereRef("musicEventArtists.eventId", "=", "musicEvent.id")

@@ -3,14 +3,10 @@ import { ClientMusicEvent, ClientArtist } from "../../lib/database/db-manager";
 import * as DateHelper from "@/lib/date.helper";
 import { LocationIcon } from "../svgs/location-icon";
 import { MusicNoteIcon } from "../svgs/music-note-icon";
-import { AppLocale, LocaleToCountryMap } from "@/lib/locale";
+import { AppLocale } from "@/lib/locale";
 import { StaticTranslations } from "@/lib/translation";
 import { ThumbsUpIcon } from "../svgs/thumbs-up-icon";
-import { MusicGenre, extractKeyGenres, localeToGenreMap } from "@/lib/genre";
-import {
-  toYoutubeChannelLink,
-  toYoutubeSearchLink,
-} from "@/lib/external-links";
+import { extractKeyGenres } from "@/lib/genre";
 import { Link } from "@/lib/navigation";
 import { InfoIcon } from "../svgs/info-icon";
 import { getVenueLocaleName } from "@/lib/venue.helper";
@@ -78,7 +74,7 @@ export const MusicEvent = ({
           </div>
           {musicEvent.artists.map((artist: ClientArtist, i: number) => (
             <React.Fragment key={artist.id}>
-              <a
+              {/* <a
                 href={
                   artist.youtubeId
                     ? toYoutubeChannelLink(artist.youtubeId)
@@ -86,9 +82,14 @@ export const MusicEvent = ({
                 }
                 className="hover:underline mr-1"
                 data-umami-event="music-event-artist-link"
+              > */}
+              <Link
+                href={`/artists/${artist.slug}`}
+                className="hover:underline mr-1"
+                data-umami-event="music-event-artist-link"
               >
                 {artist.name}
-              </a>
+              </Link>
               {artist.isRecommended && (
                 <span className="inline-block" title={translations.recommended}>
                   <ThumbsUpIcon />
