@@ -170,7 +170,7 @@ export class MusicEventModel {
       // TODO i think this is correct. DJ and CLASSICAL should really go into genre for artist. but we won't touch chatgpt prompt until we dig more into that later
       eventType: MusicEventType.CONCERT,
       venueId: venue.id,
-      link: post.link,
+      link: post.link.trim(),
       reviewStatus: ReviewStatus.PENDING,
       slug: `${venue.slug}-${newIdFirstSegment}`,
     };
