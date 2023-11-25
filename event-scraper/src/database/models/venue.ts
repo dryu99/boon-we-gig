@@ -90,7 +90,7 @@ export class VenueModel {
     };
   }
 
-  public static generateSlug(name: string) {
+  private static generateSlug(name: string) {
     return name.toLowerCase().replace(/\s/g, "-");
   }
 }

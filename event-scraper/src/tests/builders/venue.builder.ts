@@ -15,7 +15,7 @@ export class VenueBuilder {
       instagramUsername: "bill_john_cafe_99",
       reviewStatus: ReviewStatus.PENDING,
       name: "Bill John Cafe",
-      slug: VenueModel.generateSlug("Bill John Cafe"),
+      slug: "bill-john-cafe",
     };
   }
 

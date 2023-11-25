@@ -194,7 +194,7 @@ export class MusicEventModel {
       throw new AppError("Event has invalid start date time", { parsedEvent });
   }
 
-  public static generateSlug(venueSlug: string, id: UUID) {
+  private static generateSlug(venueSlug: string, id: UUID) {
     const idFirstSegment = id.split("-")[0];
     return `${venueSlug}-${idFirstSegment}`;
   }

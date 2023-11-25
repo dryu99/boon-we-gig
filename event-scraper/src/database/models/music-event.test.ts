@@ -97,25 +97,19 @@ describe("MusicEventModel", () => {
 
       expect(result).toEqual({
         id: result.id,
-        slug: MusicEventModel.generateSlug(savedVenue.slug, result.id),
+        slug: `${newVenue.slug}-${result.id!.split("-")[0]}`,
         artists: [
           {
             id: result.artists[0].id,
             name: "artist1",
             reviewStatus: ReviewStatus.PENDING,
-            slug: MusicArtistModel.generateSlug(
-              "artist1",
-              result.artists[0].id!
-            ),
+            slug: `artist1-${result.artists[0].id!.split("-")[0]}`,
           },
           {
             id: result.artists[1].id,
             name: "artist2",
             reviewStatus: ReviewStatus.PENDING,
-            slug: MusicArtistModel.generateSlug(
-              "artist2",
-              result.artists[1].id!
-            ),
+            slug: `artist2-${result.artists[1].id!.split("-")[0]}`,
           },
         ],
         eventType: MusicEventType.CONCERT,
@@ -251,12 +245,14 @@ describe("MusicEventModel", () => {
     });
 
     test("should successfully add music event with artists, even if artist/country already exists (unique constraint)", async () => {
-      const duplicateArtist = new MusicArtistBuilder()
-        .withName("jpitme")
-        .build();
+      const duplicateArtistName = "jpitme";
+      const duplicateArtistCountry = "KO";
 
       const artists: NewMusicArtist[] = [
-        duplicateArtist,
+        new MusicArtistBuilder()
+          .withName(duplicateArtistName)
+          .withCountry(duplicateArtistCountry)
+          .build(),
         new MusicArtistBuilder().build(),
         new MusicArtistBuilder().withName("yoshino").build(),
       ];
@@ -270,7 +266,10 @@ describe("MusicEventModel", () => {
       // call again
       const newEvent2 = new MusicEventBuilder()
         .withArtists([
-          duplicateArtist,
+          new MusicArtistBuilder()
+            .withName(duplicateArtistName)
+            .withCountry(duplicateArtistCountry)
+            .build(),
           new MusicArtistBuilder().withName("michael yoshi").build(),
         ])
         .build() as NewMusicEventWithArtists;
