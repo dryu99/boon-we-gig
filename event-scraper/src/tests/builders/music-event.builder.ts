@@ -8,6 +8,7 @@ import {
 import { ReviewStatus, UUID } from "../../utils/types";
 import { v4 as uuidv4 } from "uuid";
 
+// TODO maybe for builders we should just be initing them with their respective toNew functions
 export class MusicEventBuilder {
   private musicEvent: NewMusicEvent & { artists?: NewMusicArtist[] };
 

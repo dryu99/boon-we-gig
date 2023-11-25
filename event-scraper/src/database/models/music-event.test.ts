@@ -22,6 +22,7 @@ import { SavedVenue, VenueModel } from "./venue";
 import { MusicArtistModel, NewMusicArtist } from "./music-artist";
 import { v4 as uuidv4 } from "uuid";
 import { MusicArtistBuilder } from "../../tests/builders/music-artist.builder";
+import { migrateDown, migrateLatest } from "../../tests/test.helper";
 
 describe("MusicEventModel", () => {
   let migrator: Migrator;
@@ -36,7 +37,7 @@ describe("MusicEventModel", () => {
 
   afterAll(async () => {
     // Stop db
-    await migrateDown();
+    await migrateDown(migrator);
     await DatabaseManager.stop();
   });
 
@@ -45,8 +46,8 @@ describe("MusicEventModel", () => {
     // TODO doesn't seem very clean to use migrations to reset, we just want to reset the db after every test so tests are stateless
     //      there's prob a way to achieve this without migrations (e.g. transaction rollback: https://github.com/kysely-org/kysely/issues/257)
     //      doing this is also prob slower than just clearing tables. but for now this will do
-    await migrateDown();
-    await migrateLatest();
+    await migrateDown(migrator);
+    await migrateLatest(migrator);
   });
 
   describe("inferStartDate", () => {
@@ -69,6 +70,7 @@ describe("MusicEventModel", () => {
 
   describe("toNew", () => {
     test("valid parsed event", async () => {
+      // although this could be simplified with a non-new VenueBuilder, we shouldn't be building saved venues that aren't saved to the db
       const newVenue = new VenueBuilder().build();
       await VenueModel.addOne(newVenue);
       const savedVenue = await VenueModel.getOneByInstagramUsername(
@@ -292,16 +294,4 @@ describe("MusicEventModel", () => {
       expect(savedPairs).toContainEqual(result2.savedMusicEventArtists[1]);
     });
   });
-
-  async function migrateDown() {
-    const { error, results } = await migrator.migrateTo(NO_MIGRATIONS);
-    error && console.error("migration-down for test db failed", error);
-    // results && results.forEach((result) => console.log(result));
-  }
-
-  async function migrateLatest() {
-    const { error, results } = await migrator.migrateToLatest();
-    error && console.error("migration-latest for test db failed", error);
-    // results && results.forEach((result) => console.log(result));
-  }
 });
