@@ -41,7 +41,7 @@ export default async function VenuePage({
           <LocationIcon width="20px" />
         </div>
 
-        <h2>
+        <h2 className="mb-2">
           {LocaleToCountryMap[params.locale].includes(venue.country) &&
           venue.localName
             ? venue.localName

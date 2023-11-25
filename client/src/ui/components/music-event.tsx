@@ -13,6 +13,7 @@ import {
 import { Link } from "@/lib/navigation";
 import { FreeTag, GenreTag, NewTag } from "./music-event-tags";
 import { InfoIcon } from "../svgs/info-icon";
+import { getVenueLocaleName } from "@/lib/venue.helper";
 
 export const MusicEvent = ({
   musicEvent,
@@ -62,14 +63,7 @@ export const MusicEvent = ({
                 className="hover:underline"
                 data-umami-event="music-event-venue-link"
               >
-                {
-                  // check for venue local name
-                  LocaleToCountryMap[locale].includes(
-                    musicEvent.venue.country
-                  ) && musicEvent.venue.localName
-                    ? musicEvent.venue.localName
-                    : musicEvent.venue.name
-                }
+                {getVenueLocaleName(musicEvent.venue, locale)}
               </Link>
             </div>
           </div>
@@ -114,7 +108,7 @@ export const MusicEvent = ({
           <Link
             href={`/concerts/${musicEvent.slug}`}
             className="text-sm hover:underline"
-            data-umami-event="music-event-concert-link" // TODO rename lmao
+            data-umami-event="music-event-concert-link"
           >
             {"more info >>"}
           </Link>

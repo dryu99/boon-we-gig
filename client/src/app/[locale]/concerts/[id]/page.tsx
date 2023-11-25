@@ -3,6 +3,7 @@ import * as DateHelper from "@/lib/date.helper";
 import { toInstagramProfileLink } from "@/lib/external-links";
 import { extractKeyGenres } from "@/lib/genre";
 import { Link } from "@/lib/navigation";
+import { getVenueLocaleName } from "@/lib/venue.helper";
 import {
   GoogleMapsLink,
   NaverMapsLink,
@@ -11,6 +12,7 @@ import {
 import { NewTag, FreeTag, GenreTag } from "@/ui/components/music-event-tags";
 import { InstagramIcon } from "@/ui/svgs/instagram-icon";
 import { LocationIcon } from "@/ui/svgs/location-icon";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 // TODO add translations
@@ -23,6 +25,7 @@ export default async function ConcertPage({
 
   if (!musicEvent) notFound();
 
+  const t = await getTranslations("static"); // TODO this is duplicated from the shows page lol
   const genres = extractKeyGenres(musicEvent.artists, params.locale);
   const venue = musicEvent.venue;
   const externalMapsJson = venue?.externalMapsJson;
@@ -35,27 +38,26 @@ export default async function ConcertPage({
   const showTags = isRecent || musicEvent.isFree || genres.length > 0;
 
   return (
-    // TODO i think its worth adding map icons here. if im looking for a concert id like to be able to see immediately where the venue is instead of having to do an extra link click
     <div className="flex flex-col">
-      {/* <h2 className="flex flex-col sm:flex-row sm:items-center"> */}
       <h2 className="flex flex-col mb-2">
         <span className="text-3xl">
+          {/* TODO day of week looks too big in korean */}
           <span className="mr-2">{`${dateParts.dayOfWeek}`}</span>
           <span className="mr-2">{`${dateParts.dateStr}`}</span>
           <span className="mr-2">-</span>
           <span>{`${dateParts.timeStr}`}</span>
         </span>
 
-        {/* <span className="mx-2">@</span> */}
-        {/* TODO add error handling for venue null? */}
-        {/* TODO figure out how to make location stand out more, using icon seems to not be working */}
-
-        <span>
-          <span className="mr-1">@</span>
-          <Link className="hover:underline" href={`/venues/${venue?.slug}`}>
-            {venue?.name}
-          </Link>
-        </span>
+        {venue && (
+          <span>
+            <div className="inline-block mr-1" title="Venue">
+              <LocationIcon width="16px" />
+            </div>
+            <Link className="hover:underline" href={`/venues/${venue?.slug}`}>
+              {getVenueLocaleName(venue, params.locale)}
+            </Link>
+          </span>
+        )}
       </h2>
       <div className="flex flex-row justify-center mb-5">
         {externalMapsJson?.googleMapsUrl && (
@@ -74,7 +76,7 @@ export default async function ConcertPage({
           </div>
         )}
       </div>
-      <div className="text-center mb-4">
+      <div className="text-center mb-5">
         <h3 className="font-bold">feat.</h3>
         <hr className="w-20 mx-auto mb-1" />
         <div>
@@ -84,14 +86,11 @@ export default async function ConcertPage({
         </div>
       </div>
 
-      <div className="text-center mb-4">
+      <div className="text-center mb-5">
         <h3 className="font-bold">details</h3>
         <hr className="w-20 mx-auto mb-2" />
         <div className="flex justify-center">
-          <a
-            href={musicEvent.link}
-            // data-umami-event="" TODO add this
-          >
+          <a href={musicEvent.link} data-umami-event="concert-external-link">
             <InstagramIcon />
           </a>
         </div>
@@ -101,12 +100,8 @@ export default async function ConcertPage({
           <h3 className="font-bold">tags</h3>
           <hr className="w-20 mx-auto mb-1" />
           <div className="flex flex-col">
-            {isRecent && (
-              <NewTag text={"NEW"} /> // TODO translate
-            )}
-            {
-              musicEvent.isFree && <FreeTag text={"FREE"} /> // TODO translate
-            }
+            {isRecent && <NewTag text={t("new")} />}
+            {musicEvent.isFree && <FreeTag text={t("free")} />}
             {genres.map((genre, i) => (
               <GenreTag key={i} genre={genre} />
             ))}
