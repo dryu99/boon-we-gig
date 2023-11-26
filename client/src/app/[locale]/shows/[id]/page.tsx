@@ -4,7 +4,7 @@ import { toInstagramProfileLink } from "@/lib/external-links";
 import { extractKeyGenres } from "@/lib/genre";
 import { AppLocale } from "@/lib/locale";
 import { Link } from "@/lib/navigation";
-import { getVenueLocaleName } from "@/lib/venue.helper";
+import { getLocalizedVenueName } from "@/lib/venue.helper";
 import {
   GoogleMapsLink,
   NaverMapsLink,
@@ -54,8 +54,8 @@ export default async function ShowPage({
             <div className="inline-block mr-1" title="Venue">
               <LocationIcon width="16px" />
             </div>
-            <Link className="hover:underline" href={`/venues/${venue?.slug}`}>
-              {getVenueLocaleName(venue, params.locale)}
+            <Link className="hover:underline" href={`/venues/${venue.slug}`}>
+              {getLocalizedVenueName(venue, params.locale)}
             </Link>
           </div>
           <div className="flex flex-row justify-center mb-5">

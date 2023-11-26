@@ -12,7 +12,7 @@ import { ThumbsUpIcon } from "../svgs/thumbs-up-icon";
 import { extractKeyGenres } from "@/lib/genre";
 import { Link } from "@/lib/navigation";
 import { InfoIcon } from "../svgs/info-icon";
-import { getVenueLocaleName } from "@/lib/venue.helper";
+import { getLocalizedVenueName } from "@/lib/venue.helper";
 import { NewTag, FreeTag, GenreTag } from "./music-event-tags";
 
 export const MusicEvent = ({
@@ -63,7 +63,7 @@ export const MusicEvent = ({
                 className="hover:underline"
                 data-umami-event="music-event-venue-link"
               >
-                {getVenueLocaleName(musicEvent.venue, locale)}
+                {getLocalizedVenueName(musicEvent.venue, locale)}
               </Link>
             </div>
           </div>
