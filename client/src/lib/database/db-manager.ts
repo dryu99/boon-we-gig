@@ -166,6 +166,49 @@ export class DatabaseManager {
       .executeTakeFirst();
   }
 
+  // TODO this query is similar to the default one, except it doesnt do a join with venue table
+  //      try to find a good way to reduce duplication
+  public static async getUpcomingMusicEventsForArtist(
+    artistId: string,
+    options: {
+      offset: number;
+      limit: number;
+    }
+  ): Promise<ClientMusicEvent[]> {
+    const todayMidnight = new Date();
+    todayMidnight.setUTCHours(-3);
+
+    return this.db
+      .selectFrom("musicEvent")
+      .innerJoin(
+        "musicEventArtists",
+        "musicEventArtists.eventId",
+        "musicEvent.id"
+      )
+      .innerJoin("musicArtist", "musicArtist.id", "musicEventArtists.artistId")
+      .select((eb) => [
+        "musicEvent.id",
+        "musicEvent.isFree",
+        "musicEvent.startDateTime",
+        "musicEvent.link",
+        "musicEvent.createdAt",
+        "musicEvent.eventType",
+        "musicEvent.reviewStatus",
+        "musicEvent.slug",
+        this.withMusicArtists(eb),
+        this.withVenue(eb),
+      ])
+      .where("musicArtist.id", "=", artistId)
+      .$if(process.env.NODE_ENV === "production", (qb) =>
+        // note: should be no timezone issues given utc dates are being compared
+        qb.where("musicEvent.startDateTime", ">", todayMidnight)
+      )
+      .orderBy("musicEvent.startDateTime", "asc")
+      .$if(options.limit !== undefined, (qb) => qb.limit(options.limit))
+      .offset(options.offset)
+      .execute();
+  }
+
   public static async getUpcomingMusicEvents(options: {
     offset: number;
     limit: number;
@@ -174,7 +217,7 @@ export class DatabaseManager {
     // TODO what i really want to do here is today midnight in the given city's timezone
     //      so seoul would be 12am kst - 9 hours = 3pm utc (yesterday)
     const todayMidnight = new Date();
-    todayMidnight.setUTCHours(-7);
+    todayMidnight.setUTCHours(-3);
 
     return (
       this.db

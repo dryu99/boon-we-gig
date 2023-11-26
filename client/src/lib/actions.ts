@@ -25,6 +25,16 @@ export const fetchUpcomingMusicEvents = ({
   });
 };
 
+export const fetchUpcomingMusicEventsForArtist = (
+  artistId: string,
+  { offset = 0, limit = EVENTS_PER_LOAD }
+) => {
+  return DatabaseManager.getUpcomingMusicEventsForArtist(artistId, {
+    offset,
+    limit,
+  });
+};
+
 export const fetchVenueBySlug = async (slug: string) => {
   return DatabaseManager.getVenueBySlug(slug);
 };
