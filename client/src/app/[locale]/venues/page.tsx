@@ -2,6 +2,7 @@ import { fetchManyVenues } from "@/lib/actions";
 import { AppLocale } from "@/lib/locale";
 import { Link, redirect } from "@/lib/navigation";
 import { getLocalizedVenueName } from "@/lib/venue.helper";
+import { getTranslations } from "next-intl/server";
 
 export default async function VenuesPage({
   params,
@@ -12,9 +13,11 @@ export default async function VenuesPage({
     filter: { city: "Seoul" },
   });
 
+  const t = await getTranslations("VenuesPage");
+
   return (
     <div>
-      <h2 className="font-bold">venues</h2>
+      <h2 className="font-bold">{t("venues")}</h2>
       <div>
         {venues.map((venue, i) => (
           <div key={venue.id}>

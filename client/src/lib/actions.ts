@@ -47,6 +47,10 @@ export const fetchManyVenues = (
   return DatabaseManager.getManyVenues(locale, options);
 };
 
+export const fetchManyMusicArtists = (locale: AppLocale, options: {}) => {
+  return DatabaseManager.getManyMusicArtists(locale, options);
+};
+
 export const fetchVenueBySlug = async (slug: string) => {
   return DatabaseManager.getVenueBySlug(slug);
 };
