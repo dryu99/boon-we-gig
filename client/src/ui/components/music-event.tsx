@@ -1,5 +1,8 @@
 import React from "react";
-import { ClientMusicEvent, ClientArtist } from "../../lib/database/db-manager";
+import {
+  ClientMusicEvent,
+  ClientMusicArtist,
+} from "../../lib/database/db-manager";
 import * as DateHelper from "@/lib/date.helper";
 import { LocationIcon } from "../svgs/location-icon";
 import { MusicNoteIcon } from "../svgs/music-note-icon";
@@ -70,19 +73,10 @@ export const MusicEvent = ({
         <div className="sm:mr-5 sm:w-60">
           {/* TODO translate */}
           <div className="inline-block mr-1" title="Artists">
-            <MusicNoteIcon />
+            <MusicNoteIcon width="16px" />
           </div>
-          {musicEvent.artists.map((artist: ClientArtist, i: number) => (
+          {musicEvent.artists.map((artist: ClientMusicArtist, i: number) => (
             <React.Fragment key={artist.id}>
-              {/* <a
-                href={
-                  artist.youtubeId
-                    ? toYoutubeChannelLink(artist.youtubeId)
-                    : toYoutubeSearchLink(artist.name)
-                }
-                className="hover:underline mr-1"
-                data-umami-event="music-event-artist-link"
-              > */}
               <Link
                 href={`/artists/${artist.slug}`}
                 className="hover:underline mr-1"

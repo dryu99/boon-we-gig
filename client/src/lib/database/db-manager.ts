@@ -26,11 +26,11 @@ export type ClientMusicEvent = Pick<
   | "reviewStatus"
   | "slug"
 > & {
-  artists: ClientArtist[];
+  artists: ClientMusicArtist[];
   venue: ClientVenue | null; // TODO this null shouldn't be necessary, if the venue id exists then there should be a corresponding venue
 };
 
-export type ClientArtist = Pick<
+export type ClientMusicArtist = Pick<
   Selectable<MusicArtist>,
   | "id"
   | "name"
@@ -149,7 +149,7 @@ export class DatabaseManager {
 
   public static async getMusicArtistBySlug(
     slug: string
-  ): Promise<ClientArtist | undefined> {
+  ): Promise<ClientMusicArtist | undefined> {
     return this.db
       .selectFrom("musicArtist")
       .select((eb) => [
