@@ -20,8 +20,10 @@ export default async function ArtistPage({
 
   if (!artist) notFound();
 
-  const t = await getTranslations("static"); // TODO this is duplicated from the shows page lol
   const musicEvents = await fetchUpcomingMusicEventsForArtist(artist.id, {});
+  const t = await getTranslations("static"); // TODO this is duplicated from the shows page lol
+
+  const translations = unstable_getTranslations(t);
 
   return (
     <div className="flex flex-col">
@@ -32,7 +34,11 @@ export default async function ArtistPage({
 
         <h2 className="mb-2">{artist.name}</h2>
       </div>
-      <MusicArtistInfo artist={artist} locale={params.locale} />
+      <MusicArtistInfo
+        artist={artist}
+        locale={params.locale}
+        translations={translations}
+      />
       {/* 
           TODO there is a terrible bug here since MusicEventListing uses the default fetchUpcomingMusicEventsForArtist fn, it wont filter by artist  
           However, since it is unlikely atm that any artist will have 30+ shows lined up, we'll let it be for now lol
@@ -40,7 +46,7 @@ export default async function ArtistPage({
       <MusicEventListing
         initialMusicEvents={musicEvents}
         locale={params.locale}
-        translations={unstable_getTranslations(t)}
+        translations={translations}
       />
     </div>
   );

@@ -12,20 +12,44 @@ import { SpotifyIcon } from "../svgs/spotify-icon";
 import { MusicGenre, getLocalizedGenre } from "@/lib/genre";
 import { AppLocale } from "@/lib/locale";
 import { GenreTag } from "./music-event-tags";
+import { StaticTranslations } from "@/lib/translation";
 
-// TODO translate everything here
+const claimInfoText = (artistName: string, locale: AppLocale) => {
+  return locale === "en"
+    ? `If you have the link and want to update this page, please contact us on Instagram @boonwegig or email us at boonwegig@gmail.com`
+    : `링크가 있고 이 페이지를 업데이트하고 싶으시다면, 인스타그램 @boonwegig 또는 boonwegig@gmail.com으로 연락 주세요.`;
+};
 
-const claimInfoText = (
-  artistName: string
-) => `If you are ${artistName} and would like to claim and edit this page,
-please contact @boonwegig on Instagram via your official Instagram account.`;
+// `If you are ${artistName} and would like to claim and edit this page,
+// please contact @boonwegig on Instagram via your official Instagram account.`;
+
+// TODO dont do this. use dynamic translations: https://next-intl-docs.vercel.app/docs/usage/messages
+const updateYoutubeLinkText = (artistName: string, locale: AppLocale) => {
+  return locale === "ko"
+    ? `"${artistName}"의 유튜브 채널을 찾을 수 없습니다.`
+    : `Could not find Youtube channel for "${artistName}".`;
+};
+
+const updateSpotifyLinkText = (artistName: string, locale: AppLocale) => {
+  return locale === "ko"
+    ? `"${artistName}"의 스포티파이 프로필을 찾을 수 없습니다.`
+    : `Could not find Spotify profile for "${artistName}".`;
+};
+
+const updateInstagramLinkText = (artistName: string, locale: AppLocale) => {
+  return locale === "ko"
+    ? `"${artistName}"의 인스타그램 프로필을 찾을 수 없습니다.`
+    : `Could not find Instagram profile for "${artistName}".`;
+};
 
 export const MusicArtistInfo = ({
   artist,
   locale,
+  translations,
 }: {
   artist: ClientMusicArtist;
   locale: AppLocale;
+  translations: StaticTranslations;
 }) => {
   return (
     <div>
@@ -43,9 +67,9 @@ export const MusicArtistInfo = ({
               className="opacity-30 hover:opacity-100 cursor-pointer"
               onClick={() =>
                 alert(
-                  `Could not find Instagram profile for ${artist.name}.
+                  `${updateInstagramLinkText(artist.name, locale)}
                 
-${claimInfoText(artist.name)}`
+${claimInfoText(artist.name, locale)}`
                 )
               }
             >
@@ -66,9 +90,9 @@ ${claimInfoText(artist.name)}`
               className="opacity-30 hover:opacity-100 cursor-pointer"
               onClick={() =>
                 alert(
-                  `Could not find Youtube channel for ${artist.name}.
+                  `${updateYoutubeLinkText(artist.name, locale)}
                 
-${claimInfoText(artist.name)}`
+${claimInfoText(artist.name, locale)}`
                 )
               }
             >
@@ -89,9 +113,9 @@ ${claimInfoText(artist.name)}`
               className="opacity-30 hover:opacity-100 cursor-pointer"
               onClick={() =>
                 alert(
-                  `Could not find Spotify profile for ${artist.name}.
+                  `${updateSpotifyLinkText(artist.name, locale)}
                 
-${claimInfoText(artist.name)}`
+${claimInfoText(artist.name, locale)}`
                 )
               }
             >
@@ -101,7 +125,7 @@ ${claimInfoText(artist.name)}`
         </div>
       </div>
       <div className="text-center mb-5">
-        <span className="mr-1"> GENRE:</span>
+        <span className="mr-1">{translations.genre}:</span>
 
         <GenreTag
           genre={
