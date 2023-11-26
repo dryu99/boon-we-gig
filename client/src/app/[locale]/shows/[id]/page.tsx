@@ -18,7 +18,7 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 // TODO add translations
-export default async function ConcertPage({
+export default async function ShowPage({
   params,
 }: {
   params: { id: string; locale: AppLocale };
@@ -105,7 +105,7 @@ export default async function ConcertPage({
         <h3 className="font-bold">{t("details")}</h3>
         <hr className="w-20 mx-auto mb-2" />
         <div className="flex justify-center">
-          <a href={musicEvent.link} data-umami-event="concert-external-link">
+          <a href={musicEvent.link} data-umami-event="show-external-link">
             <InstagramIcon />
           </a>
         </div>

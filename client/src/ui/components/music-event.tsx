@@ -101,9 +101,9 @@ export const MusicEvent = ({
           </div>
 
           <Link
-            href={`/concerts/${musicEvent.slug}`}
+            href={`/shows/${musicEvent.slug}`}
             className="text-sm hover:underline text-secondary"
-            data-umami-event="music-event-concert-link"
+            data-umami-event="music-event-show-link"
           >
             {`${translations.moreInfo} >>`}
           </Link>
