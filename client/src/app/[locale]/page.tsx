@@ -1,30 +1,33 @@
-"use client";
-
 import { CITIES } from "@/lib/city";
-import { setDefaultCityCookie } from "@/lib/cookie-actions";
-import { useRouter } from "@/lib/navigation";
+import { AppLocale, LocaleConfig } from "@/lib/locale";
+import { CityOption } from "@/ui/components/city-option";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 
-// TODO add translations
-export default function IndexPage() {
-  const router = useRouter();
+export default async function IndexPage({
+  params: { locale },
+}: {
+  params: { locale: AppLocale };
+}) {
+  // validate that the incoming `locale` parameter is valid
+  if (!LocaleConfig.locales.includes(locale)) notFound();
+
+  // TODO dig into using this while the page is still dynamic??
+  // enable static rendering: https://next-intl-docs.vercel.app/docs/getting-started/app-router#static-rendering
+  unstable_setRequestLocale(locale);
+
+  const t = await getTranslations("IndexPage");
 
   return (
     <div className="flex flex-col items-center">
-      <h2 className="">choose a city</h2>
+      <h2>{t("chooseCity")}</h2>
       <div className="flex flex-row">
         {CITIES.map((city) => (
-          <div
-            className="p-4 text-xl text-secondary hover:underline cursor-pointer"
-            onClick={() => {
-              setDefaultCityCookie(city.toLowerCase());
-              router.push(`/${city.toLowerCase()}`);
-            }}
+          <CityOption
             key={city}
-            data-umami-event="index-page-city-select"
-            data-umami-event-city={city.toLowerCase()}
-          >
-            {city.toUpperCase()}
-          </div>
+            city={city}
+            displayText={t(city.toLowerCase())}
+          />
         ))}
       </div>
     </div>
