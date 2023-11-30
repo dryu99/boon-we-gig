@@ -5,6 +5,7 @@ import { EVENTS_PER_LOAD } from "./constants";
 import {
   ClientMusicEvent,
   DatabaseManager,
+  MusicEventQueryFilter,
   UpdatedMusicArtist,
   UpdatedMusicEvent,
 } from "./database/db-manager";
@@ -15,13 +16,17 @@ import { AppLocale } from "./locale";
 // TODO should prob fetch default events by default lol
 // by default fetches all events regardless of review status
 export const fetchUpcomingMusicEvents = ({
-  offset = 0,
-  limit = EVENTS_PER_LOAD,
-  filter = {},
+  offset,
+  limit,
+  filter,
+}: {
+  offset?: number;
+  limit?: number;
+  filter: MusicEventQueryFilter;
 }): Promise<ClientMusicEvent[]> => {
   return DatabaseManager.getUpcomingMusicEvents({
-    offset,
-    limit,
+    offset: offset ?? 0,
+    limit: limit ?? EVENTS_PER_LOAD,
     filter,
   });
 };

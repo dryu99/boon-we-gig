@@ -12,6 +12,7 @@ import { DB, MusicArtist, MusicEvent, Venue } from "./db-schemas";
 import { jsonArrayFrom, jsonObjectFrom } from "kysely/helpers/postgres";
 import { MusicGenre } from "../genre";
 import { AppLocale } from "../locale";
+import { AppCity } from "../city";
 
 // TODO can be shared later in monorepo
 export type UpdatedMusicEvent = Updateable<MusicEvent>;
@@ -65,6 +66,7 @@ export type ClientVenue = Pick<
 export type MusicEventQueryFilter = {
   venueId?: string;
   includeValidOnly?: boolean;
+  city: AppCity;
 };
 
 // TODO this is duplicated from event-scraper. we can do better (monorepo or sth to share code)
@@ -281,7 +283,7 @@ export class DatabaseManager {
           this.withMusicArtists(eb),
           this.withVenue(eb),
         ])
-        .where("venue.city", "=", "Seoul") // TODO make this dynamic later
+        .where(sql`LOWER(venue.city)`, "=", options.filter.city.toLowerCase())
         .$if(options.filter.includeValidOnly === true, (qb) =>
           qb.where("musicEvent.reviewStatus", "!=", "INVALID")
         )

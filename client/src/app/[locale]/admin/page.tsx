@@ -17,9 +17,10 @@ import {
   toYoutubeChannelLink,
   toYoutubeSearchLink,
 } from "@/lib/external-links";
+import { AppCity } from "@/lib/city";
 
 // TODO also need to implement pagination or sth
-export default function AdminPage() {
+export default function AdminPage({ city }: { city: AppCity }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [musicEvents, setMusicEvents] = useState<ClientMusicEvent[]>([]);
 
@@ -32,6 +33,7 @@ export default function AdminPage() {
       setIsAuthorized(authResult);
       const newMusicEvents = await fetchUpcomingMusicEvents({
         limit: 300, // TODO lower limit or implement pagination if performance gets spicy
+        filter: { city },
       });
       setMusicEvents(newMusicEvents);
     }

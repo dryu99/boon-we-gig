@@ -30,7 +30,7 @@ export default async function VenuePage({
   //         and after confirming existence we can render page using some suspense magic while the music events are waiting to be fetched
   //      OR we could just do 1 query lol
   const musicEvents = await fetchUpcomingMusicEvents({
-    filter: { venueId: venue.id },
+    filter: { venueId: venue.id, city: params.city },
   });
 
   const t = await getTranslations("static"); // TODO this is duplicated from the shows page lol

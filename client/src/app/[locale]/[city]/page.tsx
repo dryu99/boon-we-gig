@@ -27,7 +27,7 @@ export default async function CityPage({ params: { locale, city } }: Props) {
   unstable_setRequestLocale(locale);
 
   const musicEvents = await fetchUpcomingMusicEvents({
-    filter: { includeValidOnly: true },
+    filter: { includeValidOnly: true, city },
   });
   const t = await getTranslations("static"); // TODO need to rework the way we handle translations lmao we should not be using static
 
