@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/lib/navigation";
+import { Link, usePathname } from "@/lib/navigation";
 import { LocalePicker } from "./locale-picker";
 import { CityPicker } from "./city-picker";
 import { AppLocale } from "@/lib/locale";
@@ -16,7 +16,7 @@ export const Header = ({ locale }: { locale: AppLocale }) => {
           <h1 className="text-2xl mb-1 font-bold mr-2">
             <Link href="/">{t("title")}</Link>
           </h1>
-          <CityPicker initialCity={t("seoul")} />
+          <CityPicker />
         </div>
         <div
           className={clsx("flex flex-row", {

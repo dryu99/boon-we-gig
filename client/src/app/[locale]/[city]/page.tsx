@@ -1,13 +1,13 @@
 import { fetchUpcomingMusicEvents } from "@/lib/actions";
+import { AppCity } from "@/lib/city";
 import { AppLocale, LocaleConfig } from "@/lib/locale";
 import { unstable_getTranslations } from "@/lib/translation";
-import { CityPicker } from "@/ui/components/city-picker";
 import { MusicEventListing } from "@/ui/components/music-event-listing";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 type Props = {
-  params: { locale: AppLocale };
+  params: { locale: AppLocale; city: AppCity };
 };
 
 // note: this page is statically rendered (for now)
@@ -18,7 +18,7 @@ type Props = {
 //   at the moment we're okay with these given that redeploy every 24 hours minimum
 //   (the date tradeoff might even be good given that some users might want to see what happened in the past)
 //   (the db changes tradeoff is okay too since admin edits usually happen in bulk and we can insta redeploy)
-export default async function CityPage({ params: { locale } }: Props) {
+export default async function CityPage({ params: { locale, city } }: Props) {
   // validate that the incoming `locale` parameter is valid
   if (!LocaleConfig.locales.includes(locale)) notFound();
 
