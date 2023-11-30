@@ -19,6 +19,10 @@ export type HeaderTranslations = {
   shows: string;
   venues: string;
   artists: string;
+
+  // TODO we can do better than this lol can prob use dynamic translations somewhow
+  seoul: string;
+  busan: string;
 };
 
 // TODO this is terribad remove once you firugre out how to call hooks in child components
@@ -42,5 +46,7 @@ export const unstable_getHeaderTranslations = (t: any): HeaderTranslations => {
     shows: t("shows"),
     venues: t("venues"),
     artists: t("artists"),
+    seoul: t("seoul"),
+    busan: t("busan"),
   };
 };

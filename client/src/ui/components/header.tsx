@@ -41,7 +41,7 @@ export const Header = ({
           <h1 className="text-2xl mb-1 font-bold mr-2">
             <Link href="/">{translations.title}</Link>
           </h1>
-          <CityPicker initialCity={city} />
+          <CityPicker initialCity={city} translations={translations} />
         </div>
         <div
           className={clsx("flex flex-row", {
