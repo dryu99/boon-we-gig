@@ -1,4 +1,5 @@
 import { fetchUpcomingMusicEvents, fetchVenueBySlug } from "@/lib/actions";
+import { AppCity } from "@/lib/city";
 import { toInstagramProfileLink } from "@/lib/external-links";
 import { AppLocale, LocaleToCountryMap } from "@/lib/locale";
 import { unstable_getTranslations } from "@/lib/translation";
@@ -16,7 +17,7 @@ import { notFound } from "next/navigation";
 export default async function VenuePage({
   params,
 }: {
-  params: { id: string; locale: AppLocale };
+  params: { id: string; locale: AppLocale; city: AppCity };
 }) {
   const venue = await fetchVenueBySlug(params.id);
 
@@ -75,6 +76,7 @@ export default async function VenuePage({
       <MusicEventListing
         translations={unstable_getTranslations(t)}
         locale={params.locale}
+        city={params.city}
         initialMusicEvents={musicEvents}
       />
     </div>

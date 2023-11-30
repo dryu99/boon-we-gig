@@ -8,6 +8,7 @@ import { LoaderIcon } from "../svgs/loader-icon";
 import { MusicEventGroup } from "./music-event-group";
 import { StaticTranslations } from "@/lib/translation";
 import { AppLocale } from "@/lib/locale";
+import { AppCity } from "@/lib/city";
 
 export type MusicEventGroups = Record<string, ClientMusicEvent[]>;
 
@@ -15,9 +16,11 @@ export const MusicEventListing = ({
   initialMusicEvents,
   locale,
   translations,
+  city,
 }: {
   initialMusicEvents: ClientMusicEvent[];
   locale: AppLocale;
+  city: AppCity;
   translations: StaticTranslations;
 }) => {
   const [dbOffset, setDbOffset] = useState(0);
@@ -68,6 +71,7 @@ export const MusicEventListing = ({
           <MusicEventGroup
             translations={translations}
             locale={locale}
+            city={city}
             key={date}
             groupDate={musicEvents[0].startDateTime}
             musicEvents={musicEvents}

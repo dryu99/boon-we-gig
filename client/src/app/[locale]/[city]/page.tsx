@@ -37,6 +37,7 @@ export default async function CityPage({ params: { locale, city } }: Props) {
       <MusicEventListing
         translations={unstable_getTranslations(t)}
         locale={locale}
+        city={city}
         initialMusicEvents={musicEvents}
       />
     </div>
