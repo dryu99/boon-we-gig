@@ -1,5 +1,5 @@
 import { fetchUpcomingMusicEvents } from "@/lib/actions";
-import { AppCity } from "@/lib/city";
+import { AppCity, CITIES } from "@/lib/city";
 import { AppLocale, LocaleConfig } from "@/lib/locale";
 import { unstable_getTranslations } from "@/lib/translation";
 import { MusicEventListing } from "@/ui/components/music-event-listing";
