@@ -10,6 +10,7 @@ import {
   UpdatedMusicEvent,
 } from "./database/db-manager";
 import { AppLocale } from "./locale";
+import { AppCity } from "./city";
 
 // TODO break up this file into smaller files (create action folder or sth)
 
@@ -45,7 +46,7 @@ export const fetchManyVenues = (
   locale: AppLocale,
   options: {
     filter: {
-      city: string;
+      city: AppCity;
     };
   }
 ) => {

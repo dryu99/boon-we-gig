@@ -11,8 +11,8 @@ export default async function VenuesPage({
 }: {
   params: { locale: AppLocale; city: AppCity };
 }) {
-  let venues = await fetchManyVenues(params.locale, {
-    filter: { city: "Seoul" },
+  const venues = await fetchManyVenues(params.locale, {
+    filter: { city: params.city },
   });
 
   const t = await getTranslations("VenuesPage");

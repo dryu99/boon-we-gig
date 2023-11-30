@@ -88,12 +88,11 @@ export class DatabaseManager {
     plugins: [new CamelCasePlugin()],
   });
 
-  // TODO filter by city
   public static async getManyVenues(
     locale: AppLocale,
     options: {
       filter: {
-        city: string;
+        city: AppCity;
       };
     }
   ) {
@@ -101,7 +100,7 @@ export class DatabaseManager {
       this.db
         .selectFrom("venue")
         .selectAll() // TODO we dont need everything prob
-        .where("city", "=", options.filter.city)
+        .where(sql`LOWER(city)`, "=", options.filter.city.toLowerCase()) // TODO look into whether its more performant to just make cities all lowercase in db
         .where("reviewStatus", "=", "VALID")
         // make sure names are being sorted according to curr locale
         .$if(locale !== "en", (qb) =>
