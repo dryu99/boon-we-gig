@@ -263,7 +263,7 @@ export class DatabaseManager {
     // TODO what i really want to do here is today midnight in the given city's timezone
     //      so seoul would be 12am kst - 9 hours = 3pm utc (yesterday)
     const todayMidnight = new Date();
-    todayMidnight.setUTCHours(-3);
+    todayMidnight.setUTCHours(-2);
 
     return (
       this.db
