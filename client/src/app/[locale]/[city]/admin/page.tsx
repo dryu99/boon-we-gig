@@ -45,7 +45,7 @@ export default function AdminPage({
 
   return (
     <div>
-      <h2>Admin</h2>
+      <h2 className="mb-2">Admin</h2>
       {!isAuthorized ? (
         <form onSubmit={submitForm}>
           <div className="mt-4">

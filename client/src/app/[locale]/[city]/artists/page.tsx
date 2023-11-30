@@ -19,7 +19,7 @@ export default async function ArtistsPage({
 
   return (
     <div className="w-full self-start">
-      <h2 className="font-bold">{t("artists")}</h2>
+      <h2 className="font-bold mb-2">{t("artists")}</h2>
       <div>
         {artists.map((artist, i) => (
           <div key={artist.id}>
