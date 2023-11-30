@@ -1,6 +1,6 @@
 "use server";
 
-import { FormState as MusicEventUpdateFormState } from "@/app/[locale]/admin/page";
+import { FormState as MusicEventUpdateFormState } from "@/app/[locale]/[city]/admin/page";
 import { EVENTS_PER_LOAD } from "./constants";
 import {
   ClientMusicEvent,

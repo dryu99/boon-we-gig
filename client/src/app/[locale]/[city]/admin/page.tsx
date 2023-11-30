@@ -20,7 +20,11 @@ import {
 import { AppCity } from "@/lib/city";
 
 // TODO also need to implement pagination or sth
-export default function AdminPage({ city }: { city: AppCity }) {
+export default function AdminPage({
+  params: { city },
+}: {
+  params: { city: AppCity };
+}) {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [musicEvents, setMusicEvents] = useState<ClientMusicEvent[]>([]);
 
