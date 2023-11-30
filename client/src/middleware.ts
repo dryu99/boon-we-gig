@@ -3,6 +3,7 @@ import { LocaleConfig } from "./lib/locale";
 import { NextRequest } from "next/server";
 import { DEFAULT_CITY_COOKIE_NAME } from "./lib/city";
 
+// TODO might be able to optimize this by checking req header for location to auto set default city
 export default async function middleware(request: NextRequest) {
   const [, locale, pathname] = request.nextUrl.pathname.split("/");
 
