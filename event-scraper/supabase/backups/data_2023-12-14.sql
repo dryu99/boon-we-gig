@@ -213,6 +213,16 @@ b202e4ab-5265-4e71-adf2-adebdd79404f	Omni One	PENDING	2023-12-06 16:02:51.517194
 9d6b5d1c-ad24-40df-8335-c5b6c9c520bb	이한범	PENDING	2023-12-06 16:02:51.517194+00	2023-12-06 16:02:51.517194+00	\N	\N	\N	\N	\N	\N	f	\N	9d6b5d1c-ad24
 b9357e87-056f-4364-943b-6ebc53cfa1da	김민우	PENDING	2023-12-06 16:02:51.517194+00	2023-12-06 16:02:51.517194+00	\N	\N	\N	\N	\N	\N	f	\N	b9357e87-056f
 516a26a4-991e-44e3-bcb0-6353e801581a	녹두	PENDING	2023-12-06 16:03:00.288936+00	2023-12-06 16:03:00.288936+00	\N	\N	\N	\N	\N	\N	f	\N	516a26a4-991e
+8e6f1c54-9c1c-4215-b558-9735e58ffd9d	KNOWER	PENDING	2023-12-14 16:52:47.375243+00	2023-12-14 16:52:47.375243+00	\N	\N	\N	\N	\N	\N	f	\N	knower-8e6f1c54
+66bb2364-e42f-4797-a474-9374999dd78c	Black Country, New Road	PENDING	2023-12-14 16:52:47.401212+00	2023-12-14 16:52:47.401212+00	\N	\N	\N	\N	\N	\N	f	\N	66bb2364-e42f
+b803e687-82d1-45fe-9ca7-0e96246316b5	KINO [BORN NAKED]	PENDING	2023-12-14 16:52:47.424289+00	2023-12-14 16:52:47.424289+00	\N	\N	\N	\N	\N	\N	f	\N	b803e687-82d1
+4c5532d1-272e-4612-9705-96ee43d84e83	한온	PENDING	2023-12-14 16:52:59.362371+00	2023-12-14 16:52:59.362371+00	\N	\N	\N	\N	\N	\N	f	\N	4c5532d1-272e
+b54f97d7-9d8e-4f36-861a-bae826237601	김태윤	PENDING	2023-12-14 16:52:59.362371+00	2023-12-14 16:52:59.362371+00	\N	\N	\N	\N	\N	\N	f	\N	b54f97d7-9d8e
+d5c30b71-fd54-4193-b023-1e55e2d8e738	SEN	PENDING	2023-12-14 16:52:59.362371+00	2023-12-14 16:52:59.362371+00	\N	\N	\N	\N	\N	\N	f	\N	sen-d5c30b71
+358c519b-4299-4b50-b862-95d879c72be8	정다운	PENDING	2023-12-14 16:52:59.362371+00	2023-12-14 16:52:59.362371+00	\N	\N	\N	\N	\N	\N	f	\N	358c519b-4299
+3868e359-1358-4d36-a210-d901295efe35	아울즈	PENDING	2023-12-14 16:52:59.362371+00	2023-12-14 16:52:59.362371+00	\N	\N	\N	\N	\N	\N	f	\N	3868e359-1358
+0c356171-1cb4-4a9a-87b1-12e94f5be7e9	신바람 이박사	PENDING	2023-12-14 16:53:30.994588+00	2023-12-14 16:53:30.994588+00	\N	\N	\N	\N	\N	\N	f	\N	0c356171-1cb4
+d749f9a4-66ac-4467-b40d-899620b848a2	아랑고고장구단(w/오부리 DJ핫팟)	PENDING	2023-12-14 16:53:30.994588+00	2023-12-14 16:53:30.994588+00	\N	\N	\N	\N	\N	\N	f	\N	d749f9a4-66ac
 4bf2e123-b5b7-458a-ad0a-44feb37f60c5	아워에이지	PENDING	2023-11-19 16:00:18.286955+00	2023-11-26 07:15:16.743473+00	\N	\N	\N	\N	\N	\N	f	\N	4bf2e123-b5b7
 2a68ed87-d839-48fb-aa15-fee654da76f9	로우하이로우	PENDING	2023-11-19 16:00:18.286955+00	2023-11-26 07:15:16.743473+00	\N	\N	\N	\N	\N	\N	f	\N	2a68ed87-d839
 9e6d7302-665d-46b1-a076-44214ce23b4f	Yvzk	PENDING	2023-11-19 16:00:45.613173+00	2023-11-26 07:15:16.743473+00	\N	\N	\N	\N	\N	\N	f	\N	yvzk-9e6d7302
@@ -312,6 +322,13 @@ edca2f0b-2399-483d-9291-cf81a3de2ee3	Mashinomi(JP)	PENDING	2023-12-06 16:03:27.0
 302c99b8-b513-4a9c-b0b2-ba56521bf018	GaGi	PENDING	2023-12-06 16:03:27.001262+00	2023-12-06 16:03:27.001262+00	\N	\N	\N	\N	\N	\N	f	\N	gagi-302c99b8
 6c3999b7-2c17-4bec-999d-8fe23a2c8e12	팔팔정과시봉새	PENDING	2023-12-06 16:03:27.001262+00	2023-12-06 16:03:27.001262+00	\N	\N	\N	\N	\N	\N	f	\N	6c3999b7-2c17
 0ec4c35e-9e5d-4c4c-b052-b822f7c49aee	예빛	PENDING	2023-12-06 16:03:37.420228+00	2023-12-06 16:03:37.420228+00	\N	\N	\N	\N	\N	\N	f	\N	0ec4c35e-9e5d
+a71a4c4b-80b8-42fd-bfba-5555b9877bdb	Fall Out Boy	PENDING	2023-12-14 16:55:04.286624+00	2023-12-14 16:55:04.286624+00	\N	\N	\N	\N	\N	\N	f	\N	fall-out-boy-a71a4c4b
+6daabc30-cc6a-4c1d-bcfd-bbeb1a7cd095	Panic! At The Disco	PENDING	2023-12-14 16:55:04.286624+00	2023-12-14 16:55:04.286624+00	\N	\N	\N	\N	\N	\N	f	\N	6daabc30-cc6a
+664fe884-9cf2-4ca1-a431-a6e191a5ff88	키아로 Chiaro	PENDING	2023-12-14 16:55:04.322224+00	2023-12-14 16:55:04.322224+00	\N	\N	\N	\N	\N	\N	f	\N	664fe884-9cf2
+90c0fbdd-4bf6-48a7-8bf8-0f801002aa4c	팝엔츠 Popents	PENDING	2023-12-14 16:55:04.322224+00	2023-12-14 16:55:04.322224+00	\N	\N	\N	\N	\N	\N	f	\N	90c0fbdd-4bf6
+ada6a35b-4a50-48b5-8173-8fba30304f06	홍비 Hongbi	PENDING	2023-12-14 16:55:04.345658+00	2023-12-14 16:55:04.345658+00	\N	\N	\N	\N	\N	\N	f	\N	ada6a35b-4a50
+4d32d464-b217-419e-b2ee-aab215864654	권유 gwon.u	PENDING	2023-12-14 16:55:04.345658+00	2023-12-14 16:55:04.345658+00	\N	\N	\N	\N	\N	\N	f	\N	4d32d464-b217
+d7feb985-d2ab-434f-9d42-a11ee852c8d9	코지앤노이지 Kozy&Noisy	PENDING	2023-12-14 16:55:04.366741+00	2023-12-14 16:55:04.366741+00	\N	\N	\N	\N	\N	\N	f	\N	d7feb985-d2ab
 87390906-bd8b-4278-8354-aace8b041dad	후맵네	VALID	2023-11-19 16:24:43.198479+00	2023-11-26 07:15:16.743473+00	funk	\N	whoo_the_spicy	UCoqClQfM69heXh3VjiHq_Bw	6FyCQxdtdThvqFJrXrOHnz	KO	t	\N	87390906-bd8b
 416045e2-b110-4944-af9a-e0622c0a1943	Escapingneverland	PENDING	2023-11-13 11:43:48.713717+00	2023-11-26 07:15:16.743473+00	\N	\N	\N	\N	\N	\N	f	\N	escapingneverland-416045e2
 fb360d5b-e91a-465c-8c46-22506cd84fdb	도히	PENDING	2023-11-17 16:05:32.637501+00	2023-11-26 07:15:16.743473+00	\N	\N	\N	\N	\N	\N	f	\N	fb360d5b-e91a
@@ -1274,7 +1291,7 @@ fd10a0cc-1c63-460b-aa79-108fb1383dc7	zak_eun_mul	VALID	2023-11-17 15:58:47.04173
 a56e4ff9-aea3-40e3-9a6f-1c0fea67c79a	ovantgarde	VALID	2023-11-13 09:55:39.125964+00	2023-12-03 08:21:38.53924+00	KR	Busan	7688067028	Ovantgarde	https://linktr.ee/ovantgarde	{"city_name": null, "city_id": null, "latitude": null, "longitude": null, "street_address": null, "zip_code": null}	\N	\N	오방가르드	ovantgarde	{"googleMapsUrl":"https://www.google.com/maps/place/Ovantgarde/data=!3m1!4b1!4m6!3m5!1s0x3568ed619eed80c7:0xee7450acb0533a6!8m2!3d35.1372204!4d129.1010235!16s%2Fg%2F11gj5pjp4j?entry=ttu","kakaoMapsUrl":"https://place.map.kakao.com/523470618","naverMapsUrl":"https://map.naver.com/p/entry/place/1164867689"}
 6900b9c1-1693-4bc6-8cb9-42238ff29322	basement_the_shizzle	VALID	2023-11-13 09:55:39.125964+00	2023-12-03 08:21:38.669855+00	KR	Busan	2053291325	Basement	https://www.facebook.com/groups/basementpub/	{"city_name": null, "city_id": null, "latitude": null, "longitude": null, "street_address": null, "zip_code": null}	\N	\N	베이스먼트	basement	{"googleMapsUrl":"https://www.google.com/maps/place/%EB%B2%A0%EC%9D%B4%EC%8A%A4%EB%A8%BC%ED%8A%B8+basement/@35.232602,129.0855767,15z/data=!4m2!3m1!1s0x0:0x517fe5ab459a79cd?sa=X&ved=2ahUKEwiVqMPTo_KCAxUuplYBHb5AB2cQ_BJ6BAhQEAA","kakaoMapsUrl":"https://place.map.kakao.com/16841308","naverMapsUrl":"https://map.naver.com/p/entry/place/35905921"}
 4aa00acf-67ab-4c50-913a-3246c617ec4f	clubrealize	VALID	2023-11-13 09:55:39.125964+00	2023-12-03 08:21:38.798673+00	KR	Busan	3235507547	Club Realize	http://clubrealize.modoo.at/	{"city_name": "Busan, South Korea", "city_id": 110643562296368, "latitude": 35.1796, "longitude": 129.076, "street_address": "\\uc218\\uc601\\uad6c \\uac10\\ud3ec\\ub85c8\\ubc88\\uae3815", "zip_code": "48277"}	\N	\N	클럽 리얼라이즈	club-realize	{"googleMapsUrl":"https://www.google.com/maps/place/15+Gampo-ro+8beon-gil,+Suyeong-gu,+Busan/data=!4m6!3m5!1s0x356892d2cc76a84f:0x4cbf19ec74f64918!8m2!3d35.1594013!4d129.1214935!16s%2Fg%2F11bz9d6l6f?entry=ttu","kakaoMapsUrl":"https://place.map.kakao.com/695167841","naverMapsUrl":"https://map.naver.com/p/entry/place/1672231448"}
-08f46bf2-fc2b-4348-9945-4a4b31d29f00	unplugged_sinchon	VALID	2023-12-04 11:01:23.296224+00	2023-12-07 17:45:09.425689+00	KO	Seoul	27676357437	Unplugged Sincheon	http://linktr.ee/unpluggedsinchon	{"city_name": null, "city_id": null, "latitude": null, "longitude": null, "street_address": null, "zip_code": null}	\N	\N	언플러그드 신촌점	unplugged-sincheon	{"googleMapsUrl":"https://www.google.com/maps/place/Hyundai+Department+Store+Sinchon+Store+U-PLEX/data=!4m15!1m8!3m7!1s0x357ca5052561e1a7:0x43ac41b1fed03739!2sSincheon-dong,+Songpa-gu,+Seoul!3b1!8m2!3d37.5239227!4d127.0989719!16s%2Fm%2F02q0m0x!3m5!1s0x357c9968b85ced51:0xec71d563836de702!8m2!3d37.5566771!4d126.93659!16s%2Fg%2F11fn46n0lc?entry=ttu","kakaoMapsUrl":"https://place.map.kakao.com/26992232","naverMapsUrl":"https://map.naver.com/p/entry/place/21238476"}
+08f46bf2-fc2b-4348-9945-4a4b31d29f00	unplugged_sinchon	VALID	2023-12-04 11:01:23.296224+00	2023-12-13 23:31:21.562616+00	KR	Seoul	27676357437	Unplugged Sincheon	http://linktr.ee/unpluggedsinchon	{"city_name": null, "city_id": null, "latitude": null, "longitude": null, "street_address": null, "zip_code": null}	\N	\N	언플러그드 신촌점	unplugged-sincheon	{"googleMapsUrl":"https://www.google.com/maps/place/Hyundai+Department+Store+Sinchon+Store+U-PLEX/data=!4m15!1m8!3m7!1s0x357ca5052561e1a7:0x43ac41b1fed03739!2sSincheon-dong,+Songpa-gu,+Seoul!3b1!8m2!3d37.5239227!4d127.0989719!16s%2Fm%2F02q0m0x!3m5!1s0x357c9968b85ced51:0xec71d563836de702!8m2!3d37.5566771!4d126.93659!16s%2Fg%2F11fn46n0lc?entry=ttu","kakaoMapsUrl":"https://place.map.kakao.com/26992232","naverMapsUrl":"https://map.naver.com/p/entry/place/21238476"}
 \.
 
 
@@ -1378,10 +1395,13 @@ f4c44720-f8fe-429b-920c-7f189daf7e11	https://www.instagram.com/p/C0J0R7iJtFp/	PE
 348ad4fe-f94a-4c51-9585-f1af1cccf6c9	https://www.instagram.com/p/C0JCrz5OuT9/	PENDING	c4286741-f287-42f9-834c-ad4952b18f17	2023-11-27 16:01:35.851626+00	2023-11-27 16:01:35.851626+00	2023-11-26 10:00:00+00	CONCERT	f	morene-sukha-348ad4fe
 e670a0ef-8edf-4b03-9f7d-e60d818b4ba2	https://www.instagram.com/p/C0JDWkArWmi/	PENDING	17db08c1-1d74-4361-b6f2-8d24598060a2	2023-11-27 16:01:44.153193+00	2023-11-27 16:01:44.153193+00	2023-12-14 11:00:00+00	CONCERT	f	cafe-unplugged-e670a0ef
 14f8a3be-c425-4edd-8556-e7956236bf88	https://www.instagram.com/p/C0I8veFLoCQ/	PENDING	c3893cc9-e88f-461c-a784-81e341a2c8f0	2023-11-27 16:02:25.09193+00	2023-11-27 16:02:25.09193+00	2023-12-23 09:00:00+00	CONCERT	f	rolling-hall-14f8a3be
+7e8abbd6-a361-4dc8-a853-0472becdd46a	https://www.instagram.com/p/C00fUryxBNG/	PENDING	95cb4b2e-3963-4ab6-8b89-713d5eb406e6	2023-12-14 16:52:47.375243+00	2023-12-14 16:52:47.375243+00	2024-03-31 08:00:00+00	CONCERT	f	musinsa-garage-7e8abbd6
+8a558b36-cabd-47da-9aca-7897ce81fae7	https://www.instagram.com/p/C00Pu-8R_v8/	PENDING	95cb4b2e-3963-4ab6-8b89-713d5eb406e6	2023-12-14 16:52:47.401212+00	2023-12-14 16:52:47.401212+00	2024-02-21 11:00:00+00	CONCERT	f	musinsa-garage-8a558b36
 4e1aeb8b-890b-4f35-97cf-5ef542b2c0f6	https://www.instagram.com/p/C0Q79Gdp8JZ/	PENDING	19b867be-7a3c-4c03-b589-69fed6692aa5	2023-11-30 16:00:50.337975+00	2023-11-30 16:00:50.337975+00	2023-12-31 10:00:00+00	CONCERT	f	salon-moonbow-4e1aeb8b
 c182fe83-3144-4015-a196-a936bacda6e2	https://www.instagram.com/p/C0QTHvzp3jd/	PENDING	19b867be-7a3c-4c03-b589-69fed6692aa5	2023-11-30 16:00:50.361892+00	2023-11-30 16:00:50.361892+00	2023-12-30 08:00:00+00	CONCERT	f	salon-moonbow-c182fe83
 deaca32a-0055-4792-b423-8c91267c349e	https://www.instagram.com/p/C0QXoe6LDBy/	PENDING	1da88627-ca2e-448f-ad41-021ca1d2fee8	2023-11-30 16:00:58.547826+00	2023-11-30 16:00:58.547826+00	2023-12-24 10:00:00+00	CONCERT	f	senggi-studio-deaca32a
 e013ca31-2b73-47dc-b46c-5ef2ffc4bd7d	https://www.instagram.com/p/C0QQXpwJRi8/	PENDING	05a51ca8-6544-4ad1-8782-3415f2599cbe	2023-11-30 16:01:09.136762+00	2023-11-30 16:01:09.136762+00	2023-10-12 12:00:00+00	CONCERT	t	jebidabang-e013ca31
+984d8755-93fe-4fca-b601-86f804cadda9	https://www.instagram.com/p/C00Pp85Rl9I/	PENDING	95cb4b2e-3963-4ab6-8b89-713d5eb406e6	2023-12-14 16:52:47.424289+00	2023-12-14 16:52:47.424289+00	2024-01-27 10:00:00+00	CONCERT	f	musinsa-garage-984d8755
 38114b93-9551-4b72-9dd7-0d576de205fa	https://www.instagram.com/p/Cz8cGmLLPbw/	PENDING	44fc3fb4-1f78-4dfc-a6c1-fa818ecea2ae	2023-11-30 16:01:42.047105+00	2023-11-30 16:01:42.047105+00	2023-12-09 10:00:00+00	CONCERT	f	organism-38114b93
 1fc8f49c-5cf2-450f-be74-390591a54350	https://www.instagram.com/p/C0QRaHKx-Fk/	PENDING	95cb4b2e-3963-4ab6-8b89-713d5eb406e6	2023-11-30 16:01:48.224578+00	2023-11-30 16:01:48.224578+00	2023-12-17 05:00:00+00	CONCERT	f	musinsa-garage-1fc8f49c
 1e8db7c1-d463-4f7a-9345-9031996acc0a	https://www.instagram.com/p/C0QnLXQJtOf/	PENDING	b1354f14-8bc6-4630-895d-97f28b712b9f	2023-11-30 16:01:58.824606+00	2023-11-30 16:01:58.824606+00	2023-12-01 12:00:00+00	CONCERT	t	channel-1969-1e8db7c1
@@ -1389,10 +1409,12 @@ e013ca31-2b73-47dc-b46c-5ef2ffc4bd7d	https://www.instagram.com/p/C0QQXpwJRi8/	PE
 6e0c14b7-756c-4ff9-ae22-be5b1ee112ed	https://www.instagram.com/p/C0VZEcvpkaX/	PENDING	05a51ca8-6544-4ad1-8782-3415f2599cbe	2023-12-02 16:01:16.831275+00	2023-12-02 16:01:16.831275+00	2023-10-01 11:00:00+00	CONCERT	t	jebidabang-6e0c14b7
 c6658db3-7359-4cee-ab73-03cba6b16d69	https://www.instagram.com/p/CzxkgtvrZ8x/	PENDING	6900b9c1-1693-4bc6-8cb9-42238ff29322	2023-12-02 16:01:22.314074+00	2023-12-02 16:01:22.314074+00	2023-11-18 12:00:00+00	CONCERT	t	basement-c6658db3
 907c439c-5a6d-412a-bb67-2be0a0bbbd44	https://www.instagram.com/p/C0WXjfqJWPK/	PENDING	a56e4ff9-aea3-40e3-9a6f-1c0fea67c79a	2023-12-02 16:01:33.561601+00	2023-12-02 16:01:33.561601+00	2023-12-09 09:00:00+00	CONCERT	f	ovantgarde-907c439c
+8f1e1b60-3ce9-4baf-a7fd-09cceb2dceae	https://www.instagram.com/p/C01COiOR5nS/	PENDING	17db08c1-1d74-4361-b6f2-8d24598060a2	2023-12-14 16:52:59.362371+00	2023-12-14 16:52:59.362371+00	2023-12-18 11:00:00+00	CONCERT	f	cafe-unplugged-8f1e1b60
 4f3fdb37-6fe8-4683-b9c8-d69d87e195c7	https://www.instagram.com/p/C0VzwSbuZ_P/	PENDING	b1354f14-8bc6-4630-895d-97f28b712b9f	2023-12-02 16:01:50.525397+00	2023-12-02 16:01:50.525397+00	2023-12-09 11:00:00+00	CONCERT	f	channel-1969-4f3fdb37
 26faf7be-bc32-41f8-b8a7-424718a9d037	https://www.instagram.com/p/C0WS1TCLHib/	PENDING	379ce164-2bc5-4d25-9557-adf98fdc4bc6	2023-12-02 16:02:14.637162+00	2023-12-02 16:02:14.637162+00	2023-12-16 10:00:00+00	CONCERT	f	gong-sang-ondo-26faf7be
 ba8b93a1-cb1d-4bad-9452-e00d15c01aca	https://www.instagram.com/p/C0UWPptpD7V/	PENDING	36023ce6-a3d6-4467-8bb3-081cb204e6e1	2023-12-02 16:02:21.224206+00	2023-12-02 16:02:21.224206+00	2023-12-09 10:30:00+00	CONCERT	f	club-victim-ba8b93a1
 f62bbc35-bbde-4dff-bc1b-74401ef75cef	https://www.instagram.com/p/CuEM5-WpHQ6/	PENDING	bd66786f-c8e0-4615-ae2e-af0b8ad0bca5	2023-12-02 16:02:38.241696+00	2023-12-02 16:02:38.241696+00	2023-06-29 15:00:00+00	CONCERT	t	hukez-live-hall-f62bbc35
+e14fb13c-8e0b-4bc7-a681-3699576ae522	https://www.instagram.com/p/C0ySoCiuvlj/	PENDING	6b9bbbbf-dabb-465b-8c53-2f1883fbc922	2023-12-14 16:53:30.994588+00	2023-12-14 16:53:30.994588+00	2023-12-31 10:30:00+00	CONCERT	f	acs-e14fb13c
 cd0ee215-4b91-4253-bb29-032fe8253ce3	https://www.instagram.com/p/C0c0E18SfrA/	PENDING	19b867be-7a3c-4c03-b589-69fed6692aa5	2023-12-05 16:00:39.57618+00	2023-12-05 16:00:39.57618+00	2023-12-23 10:00:00+00	CONCERT	f	salon-moonbow-cd0ee215
 73dace05-375e-48b4-ac7b-46691303f753	https://www.instagram.com/p/C0d7L0trMSI/	PENDING	1da88627-ca2e-448f-ad41-021ca1d2fee8	2023-12-05 16:00:46.257623+00	2023-12-05 16:00:46.257623+00	2023-12-22 11:00:00+00	CONCERT	f	senggi-studio-73dace05
 aced7c06-5178-4940-b53a-c16b59e88328	https://www.instagram.com/p/C0dgcpUrTYo/	PENDING	05a51ca8-6544-4ad1-8782-3415f2599cbe	2023-12-05 16:01:01.256696+00	2023-12-05 16:01:01.256696+00	2023-01-01 12:00:00+00	CONCERT	t	jebidabang-aced7c06
@@ -1427,7 +1449,11 @@ e9c967f3-b663-4541-a18b-2ce37ba5b767	https://www.instagram.com/p/C0KuYfXyR3O/	PE
 0f853f39-d94a-470b-b441-547d8ba3ce46	https://www.instagram.com/p/C0MgRuzJqS_/	PENDING	bbb07824-b660-4f8a-a841-be5b779c5937	2023-11-28 16:01:43.347162+00	2023-11-28 16:01:43.347162+00	2023-12-25 08:00:00+00	CONCERT	t	yug-ilbong-0f853f39
 a1a59fdd-ef03-45ae-a124-62733a577e44	https://www.instagram.com/p/C0MgOSnJ8SE/	PENDING	bbb07824-b660-4f8a-a841-be5b779c5937	2023-11-28 16:01:43.369176+00	2023-11-28 16:01:43.369176+00	2023-12-24 08:00:00+00	CONCERT	t	yug-ilbong-a1a59fdd
 ce5e1c36-7f45-49a5-97c0-994c5c47b532	https://www.instagram.com/p/C0MgJixp2C9/	PENDING	bbb07824-b660-4f8a-a841-be5b779c5937	2023-11-28 16:01:43.390907+00	2023-11-28 16:01:43.390907+00	2023-12-23 08:00:00+00	CONCERT	t	yug-ilbong-ce5e1c36
+e48ea9b9-47b9-4d3e-a834-d14ba63a32cc	https://www.instagram.com/p/C0xyS2ypp9L/	PENDING	103f128a-3871-47d5-975d-997a6f6bc7cb	2023-12-14 16:55:04.286624+00	2023-12-14 16:55:04.286624+00	2023-12-15 12:00:00+00	CONCERT	f	pet-sounds-music-pub-e48ea9b9
 08f42986-d525-4f21-b43f-51aaf5ba00aa	https://www.instagram.com/p/C0ZD-J9LbHs/	PENDING	033b4a23-f135-4b0e-bccc-39cce670b057	2023-12-03 16:00:22.49397+00	2023-12-03 16:00:22.49397+00	2023-12-22 12:10:00+00	CONCERT	f	club-ff-08f42986
+4f18ee68-d078-4244-a414-8dda7794f66f	https://www.instagram.com/p/C0yIyVkrCV6/	PENDING	103f128a-3871-47d5-975d-997a6f6bc7cb	2023-12-14 16:55:04.322224+00	2023-12-14 16:55:04.322224+00	2023-12-08 10:00:00+00	CONCERT	t	pet-sounds-music-pub-4f18ee68
+a34af732-e707-457a-98e1-29ab568eae0f	https://www.instagram.com/p/C0yGJHZLeqU/	PENDING	103f128a-3871-47d5-975d-997a6f6bc7cb	2023-12-14 16:55:04.345658+00	2023-12-14 16:55:04.345658+00	2023-12-17 09:00:00+00	CONCERT	t	pet-sounds-music-pub-a34af732
+e5a645a8-4118-463d-bd46-5bb67ec7b7ec	https://www.instagram.com/p/C0yF9bWLPoS/	PENDING	103f128a-3871-47d5-975d-997a6f6bc7cb	2023-12-14 16:55:04.366741+00	2023-12-14 16:55:04.366741+00	2023-12-16 10:00:00+00	CONCERT	t	pet-sounds-music-pub-e5a645a8
 c2f5f116-1add-4d3b-a3d4-7602b768989d	https://www.instagram.com/p/CzaotXlRNSS/	VALID	95cb4b2e-3963-4ab6-8b89-713d5eb406e6	2023-11-13 11:43:36.671335+00	2023-11-25 10:11:02.546724+00	2023-12-02 10:00:00+00	CONCERT	f	musinsa-garage-c2f5f116
 cf1b884d-a06b-48fb-a33e-ed8c72e4759b	https://www.instagram.com/p/CzYTZ7uxpbG/	VALID	95cb4b2e-3963-4ab6-8b89-713d5eb406e6	2023-11-13 11:43:37.402687+00	2023-11-25 10:11:02.546724+00	2023-11-18 10:00:00+00	CONCERT	f	musinsa-garage-cf1b884d
 140d3d59-bf43-4be3-900d-ecf7e1fc2c97	https://www.instagram.com/p/CzGX9SfxYnn/	VALID	95cb4b2e-3963-4ab6-8b89-713d5eb406e6	2023-11-13 11:43:38.599857+00	2023-11-25 10:11:02.546724+00	2023-11-19 12:00:00+00	CONCERT	f	musinsa-garage-140d3d59
@@ -2040,6 +2066,7 @@ fc6e8d46-6f80-44a7-9f6a-cb8a2ecee54d	bb444e3e-f042-4e73-807c-a1b28abeee48
 40f6851a-826d-421b-aea8-6edc162d3ab1	d24d7c07-8778-46ab-8cbd-2474f3fc17d1
 40f6851a-826d-421b-aea8-6edc162d3ab1	ad173660-d8cf-44ce-8efa-5093fa7008a7
 9daf4ce7-d329-4dc1-b22b-a6e05eba13ad	cb5a9db3-0cbb-463a-bbb5-6b60c14f6e38
+7e8abbd6-a361-4dc8-a853-0472becdd46a	8e6f1c54-9c1c-4215-b558-9735e58ffd9d
 d4a129f2-101b-4949-80aa-87a12f8c019f	66fc0000-6120-4fe5-bc94-037798ba011f
 64f413f0-5f22-4eb5-891f-fea64ec7f3e8	a6b3b852-bff3-4086-889b-a99d2add49d7
 64f413f0-5f22-4eb5-891f-fea64ec7f3e8	9e49f7e0-1241-4af8-9e85-7fd21b539711
@@ -2073,6 +2100,7 @@ bb5dc66e-570d-4677-9cde-c3cc72f642f8	9c88db5e-71f6-4363-8391-54d37bce8b09
 472f8bcb-e0ea-44d3-a4dd-bcb6018577dc	d6f46f40-e66b-4f6a-965f-2b7b854a465c
 cdf7415c-ab5c-4244-aa16-657c5f0fdb56	2ddd90f1-4d23-4703-a48d-7785ff3e684e
 e79d3eb9-2ef9-44d3-885e-4c4e786a9efb	ee86a3c3-f586-474e-b5b9-9d7caa6a5af6
+8a558b36-cabd-47da-9aca-7897ce81fae7	66bb2364-e42f-4797-a474-9374999dd78c
 54ed7025-c848-42f3-add0-7ac3e75dafd2	7f140265-f3fa-43b9-a9a1-d2a4a8daa8ba
 afe3e475-9989-4848-a8a6-3f0609af2b16	97d69c59-4f9a-4c94-8f04-641d8c3591c9
 28c34c80-3ded-4778-a2a3-06d5cc809f10	91debb5c-ff92-403d-ba77-707a9193fb65
@@ -2087,6 +2115,7 @@ c806d9fe-c6bd-4077-ac34-4d99aafa1e45	bbd73964-c62a-4d4e-a064-250ed3bd118d
 5e5fbc72-6c2e-4206-84b2-6c3b4ccb0c30	391089ea-2a29-4136-b9f3-0a1661ee283e
 d9c5885f-6181-4a03-a5c5-cdf2aba000ed	3bc05f23-d26b-4175-8168-5b5fe191bd88
 0e13aa2c-aeee-464f-8a71-e7f73de93cd1	e3a55ca5-eff5-4562-b14a-4352795022a3
+984d8755-93fe-4fca-b601-86f804cadda9	b803e687-82d1-45fe-9ca7-0e96246316b5
 acdf968e-5357-4818-ba64-a2d8ab76e1f8	2153270b-b729-4ddf-a8f4-d847a972e3bc
 acdf968e-5357-4818-ba64-a2d8ab76e1f8	0d9dad98-ab4e-4b0f-aaa5-93bfe57cf650
 acdf968e-5357-4818-ba64-a2d8ab76e1f8	8999924e-9d1c-442a-9019-f9566224ebee
@@ -2112,6 +2141,7 @@ ccf04588-206c-4037-9d39-6b7d6f873388	88cc30ca-18a3-474a-844c-908077a9ebcb
 a913cf82-a4b4-4232-b3a7-62fbb98dc7b3	0c956046-75f5-4da5-9aaa-f8c3feba0665
 6fff9546-8ad9-4b60-ae38-bb66dd17ffe8	97bf2d09-b961-472e-ac1a-a1b1f81d7fe7
 6fff9546-8ad9-4b60-ae38-bb66dd17ffe8	876e492b-3f12-4d4f-bc21-b617c7ff5d46
+8f1e1b60-3ce9-4baf-a7fd-09cceb2dceae	4c5532d1-272e-4612-9705-96ee43d84e83
 94f7af1b-21d2-43f7-a402-0da864faa602	31451d20-ed58-44cc-9dfe-21a080841c1e
 94f7af1b-21d2-43f7-a402-0da864faa602	b16a9c8c-5e08-4a1f-af8a-e6fc2836a021
 94f7af1b-21d2-43f7-a402-0da864faa602	8ba58b10-b583-4b42-864b-0e5b8a52842a
@@ -2163,12 +2193,14 @@ b6e5c984-ac7d-4ffd-96ca-d72baa029320	16be6e3a-1ec2-41fd-ba11-9048e8ac6c30
 b6e5c984-ac7d-4ffd-96ca-d72baa029320	3ff04a78-c608-4d4f-9d77-1a3ac0046e2e
 a4ac254c-e97b-49b5-b3e7-f7985901f453	d1eec0c0-e12a-4620-b7a0-288017fb4dc4
 a4ac254c-e97b-49b5-b3e7-f7985901f453	ef9e380c-1a3c-4196-80d0-ca394ceeeaa9
+8f1e1b60-3ce9-4baf-a7fd-09cceb2dceae	b54f97d7-9d8e-4f36-861a-bae826237601
 a4ac254c-e97b-49b5-b3e7-f7985901f453	0c12a979-9c33-4674-95f7-554fd43c0e85
 b99c5fd2-dce0-4db5-9b2d-e0e2ab02d0c5	b66d5b77-17dc-49aa-882e-a0d3faf7f1ba
 ef29753d-cc2c-45a5-8ad0-61b6ec32134d	724de8b2-ad23-4210-aac2-09031c9cf359
 ef29753d-cc2c-45a5-8ad0-61b6ec32134d	2d3dee39-5e17-4696-9b0a-cd3ee33f996e
 ef29753d-cc2c-45a5-8ad0-61b6ec32134d	7f774e48-10b2-4ef6-8978-adc8427dd8f7
 ef29753d-cc2c-45a5-8ad0-61b6ec32134d	b626beca-5fcd-4d3a-ba74-3d97c5e083a4
+8f1e1b60-3ce9-4baf-a7fd-09cceb2dceae	d5c30b71-fd54-4193-b023-1e55e2d8e738
 50e38034-61ee-4ea5-b9b7-57707aa3b8fb	e83ba170-2ffa-40f6-a6de-912b91ae90d1
 50e38034-61ee-4ea5-b9b7-57707aa3b8fb	8a3f7622-faa8-439e-8b1c-995a87a34da2
 50e38034-61ee-4ea5-b9b7-57707aa3b8fb	cf3b8ba2-3cf8-4977-b5b8-7218b4deeda6
@@ -2212,6 +2244,7 @@ a27ccf08-d76f-448c-9e47-32da33878803	60ec575a-3e42-42af-b799-c0abf99d7b8b
 a27ccf08-d76f-448c-9e47-32da33878803	4b5b9e94-f7b8-4c21-99a8-88009734cfa2
 a27ccf08-d76f-448c-9e47-32da33878803	df490101-e506-499b-999d-20ce1d951f59
 857c8e61-eaf2-4340-ace0-4a0908955d65	60ec575a-3e42-42af-b799-c0abf99d7b8b
+8f1e1b60-3ce9-4baf-a7fd-09cceb2dceae	358c519b-4299-4b50-b862-95d879c72be8
 17a0faec-5001-4d5b-9ccb-7a680989d7bf	e080ff6f-d422-48ad-a335-d249db3bbc38
 17a0faec-5001-4d5b-9ccb-7a680989d7bf	90ce104b-9abd-48d4-9f1b-e512a67953f4
 17a0faec-5001-4d5b-9ccb-7a680989d7bf	427efeb9-b62d-4a4b-9575-e81320542d39
@@ -2236,6 +2269,7 @@ c3e37b28-9931-40d8-9580-12afa30da37e	233c395f-de58-436c-a8bf-81bf094ac4e5
 c3e37b28-9931-40d8-9580-12afa30da37e	00de4fbe-568e-41d4-a502-d6a80f81a97a
 c51829ca-46ad-4186-b03b-c314b4be2ccf	56a29c2f-f8b5-43df-86e8-d03008410a6f
 050fa3fb-47d1-4402-b954-786d924e2252	37af245f-c88b-41e9-a253-2bef0324be1c
+8f1e1b60-3ce9-4baf-a7fd-09cceb2dceae	3868e359-1358-4d36-a210-d901295efe35
 050fa3fb-47d1-4402-b954-786d924e2252	d66dad9b-4f9d-4cc1-b144-8f40d1dd968f
 3a7de774-8d4a-47fa-a5fd-28b658210f72	15a8ea4a-2ed0-4ca3-b3f0-d86c5f65564a
 3a7de774-8d4a-47fa-a5fd-28b658210f72	d3278f88-8327-4b03-8404-95dfcee966f4
@@ -2252,6 +2286,9 @@ c51829ca-46ad-4186-b03b-c314b4be2ccf	56a29c2f-f8b5-43df-86e8-d03008410a6f
 d375e175-9f17-4a5f-83d5-e7299201d17f	60ec575a-3e42-42af-b799-c0abf99d7b8b
 d375e175-9f17-4a5f-83d5-e7299201d17f	4bf2e123-b5b7-458a-ad0a-44feb37f60c5
 d375e175-9f17-4a5f-83d5-e7299201d17f	2a68ed87-d839-48fb-aa15-fee654da76f9
+e14fb13c-8e0b-4bc7-a681-3699576ae522	7af8fbc8-e06a-4b9f-bd15-62e3ece24b81
+e14fb13c-8e0b-4bc7-a681-3699576ae522	678f725e-467a-4892-a7bb-f968e7722bbd
+e14fb13c-8e0b-4bc7-a681-3699576ae522	0c356171-1cb4-4a9a-87b1-12e94f5be7e9
 7899d6b9-c07d-4363-84ff-2ba82b7aec5a	9e6d7302-665d-46b1-a076-44214ce23b4f
 7899d6b9-c07d-4363-84ff-2ba82b7aec5a	64b959a4-2fd7-4bd2-b4b6-66321cfd0cad
 deaf4b60-935c-4316-8887-e7993e088cea	2e17860a-c6fa-45f2-9b72-19e161917dc3
@@ -2300,6 +2337,7 @@ d514ff6a-670d-4706-ad14-68b3838292ba	077abdb5-dcf2-4901-84bb-da2acd086b09
 6bd36945-87b2-4769-afea-ba6d4621e6a5	e6c1678b-1790-468a-9592-5448b493e849
 6bd36945-87b2-4769-afea-ba6d4621e6a5	5ed70927-a59d-40ff-b36c-be2bda4721e2
 6bd36945-87b2-4769-afea-ba6d4621e6a5	7abaac53-b070-4d20-a5b0-12bd4be5d27d
+e14fb13c-8e0b-4bc7-a681-3699576ae522	d749f9a4-66ac-4467-b40d-899620b848a2
 38221af0-12e1-4016-8c9f-c636e4ee8620	f26a1d92-528d-409a-895f-a0488dbec5b0
 38221af0-12e1-4016-8c9f-c636e4ee8620	1e067c01-38bc-4635-b932-7be75638d654
 38221af0-12e1-4016-8c9f-c636e4ee8620	cf77aa9e-f77b-41b7-b420-9b173b0a669a
@@ -2432,21 +2470,29 @@ fea31ce7-551b-4ac8-83c8-5cd57e5f7ba3	1a427bfe-1102-4c31-8801-4c77e72c652f
 fea31ce7-551b-4ac8-83c8-5cd57e5f7ba3	4b1685d0-d7de-475b-a913-e87911b6aeab
 fea31ce7-551b-4ac8-83c8-5cd57e5f7ba3	7e3b7b4b-6e2f-4887-b49b-7adfdf4b4992
 fea31ce7-551b-4ac8-83c8-5cd57e5f7ba3	367b62f5-2dbb-4030-83d6-9f87a1891b74
+e48ea9b9-47b9-4d3e-a834-d14ba63a32cc	a71a4c4b-80b8-42fd-bfba-5555b9877bdb
+e48ea9b9-47b9-4d3e-a834-d14ba63a32cc	6daabc30-cc6a-4c1d-bcfd-bbeb1a7cd095
 e00a3d22-ffaa-420f-906f-5280dc729691	a3ae36b6-5e19-4c9f-841a-ef6ba7d7e1f7
 8940a0dd-b29c-4c13-8881-b67b3c35bcf4	0eb4d01b-78e0-41a4-be7a-9f9d778caf5f
 8940a0dd-b29c-4c13-8881-b67b3c35bcf4	6a220c57-6dbf-4c5e-9310-ba6322e800cb
 8940a0dd-b29c-4c13-8881-b67b3c35bcf4	1dc42c52-3f67-44c3-bb2a-6fba5e710bd7
+4f18ee68-d078-4244-a414-8dda7794f66f	f47150a4-0c4c-4786-a6cf-652a5befef6f
 6548f173-22a2-4d04-b7d3-181d2aa261f5	ab9d7d43-b16a-4fbd-bf2f-9bdb78803d01
 6548f173-22a2-4d04-b7d3-181d2aa261f5	fcf899f6-2a49-49be-8e7d-e8a7e31100c3
 abcc719a-ae84-4306-b495-75c1a9f235e9	416045e2-b110-4944-af9a-e0622c0a1943
 abcc719a-ae84-4306-b495-75c1a9f235e9	89c2c07e-cd30-4b3a-94e3-07ded27d76a1
 abcc719a-ae84-4306-b495-75c1a9f235e9	dba64091-9d6b-46da-a27c-bacb6500b36f
+4f18ee68-d078-4244-a414-8dda7794f66f	664fe884-9cf2-4ca1-a431-a6e191a5ff88
+4f18ee68-d078-4244-a414-8dda7794f66f	90c0fbdd-4bf6-48a7-8bf8-0f801002aa4c
 abcc719a-ae84-4306-b495-75c1a9f235e9	f671cb9d-819e-438f-945f-10dca5787742
+a34af732-e707-457a-98e1-29ab568eae0f	ada6a35b-4a50-48b5-8173-8fba30304f06
 d1df7987-47c9-4467-9375-df46fcc5fe56	398684e6-50a1-477b-924f-c77832dc6534
 d1df7987-47c9-4467-9375-df46fcc5fe56	9dd82785-bdfb-45b0-b4c0-b216efb859b4
 d1df7987-47c9-4467-9375-df46fcc5fe56	75e88f63-ab32-4581-869d-2754c7220e19
 d1df7987-47c9-4467-9375-df46fcc5fe56	fde4be42-b62e-4cc7-8417-5b967c3b21a3
+a34af732-e707-457a-98e1-29ab568eae0f	4d32d464-b217-419e-b2ee-aab215864654
 a689818f-299d-4d15-bfd8-8478f980b5a1	44869eba-4e25-4d02-98e6-457f54f6b532
+e5a645a8-4118-463d-bd46-5bb67ec7b7ec	d7feb985-d2ab-434f-9d42-a11ee852c8d9
 bd955f49-4d9e-4ce7-a924-2599c2136289	6f1a6922-f62e-425e-b2ea-3c54e79b8b26
 bd955f49-4d9e-4ce7-a924-2599c2136289	99e25a12-10e1-441e-ac7f-cc5a0b6d6636
 bd955f49-4d9e-4ce7-a924-2599c2136289	2dedd083-02cd-4310-b7cb-179adb53b9de
